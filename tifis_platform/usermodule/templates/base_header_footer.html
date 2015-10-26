@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block base_header %}
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<header class="mdl-layout__header">
+<div class="mdl-layout__header-row">
+  <!-- Title -->
+  <span class="mdl-layout-title">Tifis project</span>
+  <!-- Add spacer, to align navigation to the right -->
+  <div class="mdl-layout-spacer"></div>
+  <!-- Navigation. We hide it in small screens. -->
+</div>
+</header>
+    {% block content %}{% endblock content %}
+</div>
+
+{% endblock base_header %}
+
+
+
+{% block base_footer %}{% endblock base_footer %}
