@@ -25,8 +25,29 @@ var opts = {
 
 opts = assign({}, watchify.args, opts);
 
+//task builders
+
+gulp.task('build:js', ['js', 'js:watch']);
+gulp.task('build:css', ['styl', 'styles:watch']);
+gulp.task('build:all', ['js:watch', 'styles:watch']);
 
 //gulp tasks
+
+gulp.task('js', function() {
+    return generateBundle(browserify(opts));
+});
+
+gulp.task('styl', function() {
+    return styl();
+});
+
+gulp.task('styles:livereload', function() {
+    return styl().pipe(livereload());
+});
+
+gulp.task('styles:watch', function() {
+    return gulp.watch(['./lib/stylus/styles.styl','./lib/stylus/**/*.styl', './lib/babel/**/*.styl'], ['styles:livereload']);
+});
 
 gulp.task('js:watch', function() {
     var w = watchify(browserify(opts));
@@ -47,5 +68,13 @@ function generateBundle(b) {
      .pipe(source('app.js')) // archivo destino
      .pipe(buffer())
      //.pipe(uglify())
-     .pipe(gulp.dest('./public/js/')); //donde se va a guardar
+     .pipe(gulp.dest('./tifis_platform/general/front/js/')); //donde se va a guardar
+}
+
+function styl() {
+    return gulp.src('./lib/stylus/styles.styl') // entry point styl
+    .pipe(stylus({ use: nib() })) //inicializando nib como plugging
+    .pipe(concat('styles.css'))
+    //.pipe(minify())
+    .pipe(gulp.dest('./tifis_platform/general/front/css'));
 }

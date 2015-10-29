@@ -1,0 +1,29 @@
+.header
+    background-color peru
+    background-image url('/static/general/assets/background_images/cu_blur.jpg')
+    background-position center
+    background-size cover
+    box-shadow 0 8px 16px rgba(0, 0, 0, 0.25)
+    position relative
+    z-index 1
+    width 100%
+    height 25vh
+    overflow hidden
+    &:before
+        background-color rgba(235,235,235,0.1)
+        content ""
+        display block
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+    &__name-project
+        margin 0
+        line-height 25vh
+        padding 0 0 0 1rem
+        text-decoration none
+        z-index 2
+        font-size 3rem
+        color brightFontColor
+        position relative

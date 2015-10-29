@@ -3,16 +3,16 @@
 {% block title %}Inicia sesión{% endblock  %}
 
 {% block content %}
-    <main class="mdl-layout__content">
-        <div class="page-content">
-            <div class="mdl-grid">
-                <section class="mdl-cell mdl-cell--6-col">
-                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Profesor</button>
-                </section>
-                <section class="mdl-cell mdl-cell--6-col">
-                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Alumno</button>
-                </section>
+    <main>
+        <section class="professor-section">
+            <div class="professor-section__button-container">
+                <button class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--accent" type="button" name="button">Profesor</button>
             </div>
-        </div>
+        </section>
+        <section class="student-section">
+            <div class="student-section__button-container">
+                <button class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--accent" type="button" name="button">Alumno</button>
+            </div>
+        </section>
     </main>
 {% endblock content %}

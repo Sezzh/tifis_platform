@@ -7,15 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>{% block title %} Bienvendio {% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'usermodule/bower_components/normalize.css/normalize.css' %}">
-    <link rel="stylesheet" href="{% static 'usermodule/bower_components/material-design-lite/material.min.css' %}">
-    <link rel="stylesheet" href="{% static 'usermodule/css/styles.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{% static 'general/css/styles.css' %}">
 </head>
-<body class="">
+<body class="body-main">
     {% block base_header %}{% endblock base_header %}
     {% block content %}{% endblock content %}
     {% block base_footer %}{% endblock base_footer %}
-    <script src="{% static 'usermodule/bower_components/material-design-lite/material.min.js' %}"></script>
-    <script src="{% static 'general/app.js' %}"></script>
+    <script src="{% static 'general/js/app.js' %}"></script>
 </body>
 </html>
