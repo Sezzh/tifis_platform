@@ -3,14 +3,30 @@
 
 var $ = require('jquery');
 var mdl = require('../../node_modules/material-design-lite/material.js');
+var userModule = require('./user_module/');
 
 (function () {
 
+    var user = new userModule();
     console.log(mdl);
     console.log("bebi");
 })();
 
-},{"../../node_modules/material-design-lite/material.js":3,"jquery":2}],2:[function(require,module,exports){
+},{"../../node_modules/material-design-lite/material.js":4,"./user_module/":2,"jquery":3}],2:[function(require,module,exports){
+'use strict';
+
+var $ = require('jquery');
+
+function userModule() {
+    var btnprofessor = $('[data-btn="professor"]');
+    btnprofessor.addEventListener('click', function (event) {
+        console.log(event);
+    });
+}
+
+module.exports = userModule;
+
+},{"jquery":3}],3:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -9222,7 +9238,7 @@ return jQuery;
 
 }));
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 ;(function() {
 "use strict";
 

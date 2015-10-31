@@ -1,16 +1,15 @@
 .header
-    background-color peru
-    background-image url('/static/general/assets/background_images/cu_blur.jpg')
+    background-image url('/static/general/assets/background_images/cu.jpg')
     background-position center
     background-size cover
-    box-shadow 0 8px 16px rgba(0, 0, 0, 0.25)
+    //box-shadow 0 8px 16px rgba(0, 0, 0, 0.25)
     position relative
     z-index 1
     width 100%
-    height 25vh
+    height 3.75rem
     overflow hidden
     &:before
-        background-color rgba(235,235,235,0.1)
+        background-color rgba(4,4,4,1) ////darkBackgroundColor
         content ""
         display block
         position absolute
@@ -19,11 +18,46 @@
         width 100%
         height 100%
     &__name-project
+        width 100%
+        text-align center
+        font-family mainFontFamily
         margin 0
-        line-height 25vh
-        padding 0 0 0 1rem
+        line-height 3.75rem
+        padding 0
         text-decoration none
         z-index 2
-        font-size 3rem
+        font-size 1.8rem
         color brightFontColor
         position relative
+
+.main-login-container
+    width 100%
+    background-color red
+    height 44vh
+    display flex
+    &__section
+        width 50%
+        height 100%
+        background-image url('/static/general/assets/background_images/spring_blur.jpg')
+        background-position center
+        background-size cover
+        &:nth-child(odd)
+            background-image url('/static/general/assets/background_images/fall_blur.jpg')
+        &__item
+            height 100%
+
+.footer
+    background-color darkBackgroundColor
+    color brightFontColor
+    &__section
+        &__title
+            font-size 1.6rem
+            font-family mainFontFamily
+            margin 0 auto
+            width 95%
+            padding-top 1rem
+            padding-left .5rem
+        &__item
+            &__link
+                font-size 1rem
+                text-decoration none

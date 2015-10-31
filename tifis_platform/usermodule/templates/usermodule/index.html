@@ -3,15 +3,15 @@
 {% block title %}Inicia sesión{% endblock  %}
 
 {% block content %}
-    <main>
-        <section class="professor-section">
-            <div class="professor-section__button-container">
-                <button class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--accent" type="button" name="button">Profesor</button>
+    <main class="main-login-container">
+        <section class="main-login-container__section">
+            <div class="main-login-container__section__item">
+                <button data-btn="professor" class="mdl-button  mdl-js-button  mdl-js-ripple-effect  mdl-button--big" type="button" name="button">Profesor</button>
             </div>
         </section>
-        <section class="student-section">
-            <div class="student-section__button-container">
-                <button class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--accent" type="button" name="button">Alumno</button>
+        <section class="main-login-container__section">
+            <div class="main-login-container__section__item">
+                <button data-btn="student" class="mdl-button  mdl-js-button  mdl-js-ripple-effect  mdl-button--big" type="button" name="button">Alumno</button>
             </div>
         </section>
     </main>
