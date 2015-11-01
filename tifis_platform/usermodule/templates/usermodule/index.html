@@ -4,15 +4,11 @@
 
 {% block content %}
     <main class="main-login-container">
-        <section class="main-login-container__section">
-            <div class="main-login-container__section__item">
+        <section data-section="professor" class="main-login-container__section  js-main-login-container__section">
                 <button data-btn="professor" class="mdl-button  mdl-js-button  mdl-js-ripple-effect  mdl-button--big" type="button" name="button">Profesor</button>
-            </div>
         </section>
-        <section class="main-login-container__section">
-            <div class="main-login-container__section__item">
+        <section data-section="student" class="main-login-container__section  js-main-login-container__section">
                 <button data-btn="student" class="mdl-button  mdl-js-button  mdl-js-ripple-effect  mdl-button--big" type="button" name="button">Alumno</button>
-            </div>
         </section>
     </main>
 {% endblock content %}

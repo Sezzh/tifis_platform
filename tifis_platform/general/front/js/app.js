@@ -3,28 +3,66 @@
 
 var $ = require('jquery');
 var mdl = require('../../node_modules/material-design-lite/material.js');
-var userModule = require('./user_module/');
+var UserModule = require('./UserModule/');
 
 (function () {
 
-    var user = new userModule();
+    var Module = new UserModule();
     console.log(mdl);
     console.log("bebi");
 })();
 
-},{"../../node_modules/material-design-lite/material.js":4,"./user_module/":2,"jquery":3}],2:[function(require,module,exports){
+},{"../../node_modules/material-design-lite/material.js":4,"./UserModule/":2,"jquery":3}],2:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
 
-function userModule() {
-    var btnprofessor = $('[data-btn="professor"]');
-    btnprofessor.addEventListener('click', function (event) {
-        console.log(event);
+function UserModule() {
+
+    var btnProfessor = $('[data-btn="professor"]');
+    btnProfessor[0].addEventListener('click', function () {
+        openLoginRegisterForm(btnProfessor[0].getAttribute('data-btn'));
     });
+
+    var btnStudent = $('[data-btn="student"]');
+    btnStudent[0].addEventListener('click', function () {
+        openLoginRegisterForm(btnStudent[0].getAttribute('data-btn'));
+    });
+
+    function openLoginRegisterForm(element) {
+        /*
+         *Its work is to apply, handle and show the respective form for
+         *professors and students
+         */
+        var headerElement = $('.js-header');
+        if (element === 'professor') {
+
+            var formSectionElement = $('[data-section="professor"]');
+
+            if (headerElement.hasClass('header--background')) {
+                headerElement.toggleClass('header--background');
+                headerElement.toggleClass('u--professor-color');
+            } else if (headerElement.hasClass('u--student-color')) {
+                headerElement.toggleClass('u--student-color');
+                headerElement.toggleClass('u--professor-color');
+            } else if (!headerElement.hasClass('u--professor-color')) {
+                headerElement.toggleClass('u--professor-color');
+            } else if (headerElement.hasClass('u--professor-color')) {
+                headerElement.toggleClass('u--professor-color');
+                headerElement.toggleClass('header--background');
+            }
+            formSectionElement.toggleClass('u--max-width');
+            formSectionElement.next().toggleClass('u--min-width');
+            btnStudent.toggleClass('u--min-width');
+            btnProfessor.toggleClass('mdl-button--big');
+        } else if (element === 'student') {
+            headerElement.toggleClass('header--background');
+            headerElement.toggleClass('u--student-color');
+        }
+    }
 }
 
-module.exports = userModule;
+module.exports = UserModule;
 
 },{"jquery":3}],3:[function(require,module,exports){
 /*!
