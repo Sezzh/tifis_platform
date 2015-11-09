@@ -10808,19 +10808,66 @@ _:-ms-input-placeholder,
 }
 
 .mdl-button--big {
-  background-color: rgba(4,4,4,0.8);
+  background-color: rgba(4,4,4,0.5);
   width: 100%;
-  height: 100%;
+  height: 10rem;
   color: #efefef;
   text-transform: capitalize;
   font-family: 'fertigo_proregular';
   font-size: 1.5rem;
   -webkit-border-radius: 0;
   border-radius: 0;
+  padding: 0;
+}
+
+.mdl-button--form-activate {
+  color: #efefef;
+  text-transform: capitalize;
+  font-family: 'fertigo_proregular';
+}
+
+.mdl-button--form-session {
+  color: #efefef;
+  text-transform: capitalize;
+  font-family: 'fertigo_proregular';
+  font-size: 1rem;
+}
+
+.mdl-textfield--block {
+  display: block;
+}
+
+.mdl-textfield__label--professor {
+  color: #efefef;
+}
+
+.mdl-textfield__label--professor:after {
+  background-color: #41ba66;
+}
+
+.mdl-textfield__label--student {
+  color: #efefef;
+}
+
+.mdl-textfield__label--student:after {
+  background-color: #943482;
+}
+
+.mdl-textfield__label--login {
+  color: #efefef;
+}
+
+.mdl-textfield__label--validate-error:after {
+  background-color: #f00;
+}
+
+.mdl-textfield__input--bright {
+  color: #efefef;
 }
 
 html {
   font-size: 16px;
+  font-family: 'fertigo_proregular';
 }
 
 .body-main {
@@ -10833,11 +10880,19 @@ html {
 }
 
 .header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
   width: 100%;
   height: 3.75rem;
   overflow: hidden;
+  -webkit-transition: background 0.5s ease-in-out;
+  -moz-transition: background 0.5s ease-in-out;
+  -o-transition: background 0.5s ease-in-out;
+  -ms-transition: background 0.5s ease-in-out;
+  transition: background 0.5s ease-in-out;
 }
 
 .header__name-project {
@@ -10863,7 +10918,7 @@ html {
 }
 
 .header--background:before {
-  background-color: #040404;
+  background-color: rgba(4,4,4,0.5);
   content: "";
   display: block;
   position: absolute;
@@ -10875,28 +10930,135 @@ html {
 
 .main-login-container {
   width: 100%;
-  background-color: #f00;
-  height: 44vh;
+  height: auto;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: box;
   display: flex;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  overflow: hidden;
+  margin-top: 3.75rem;
 }
 
 .main-login-container__section {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #343434;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-login-container__section__phrase {
+  font-family: 'fertigo_proregular';
+  color: #efefef;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  width: 80%;
+  margin: 0.5rem auto;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  background-color: rgba(158,158,158,0.2);
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 5%;
+}
+
+.main-login-container__section__button-container {
   width: 50%;
-  height: 100%;
   background-image: url("../../../../../static/general/assets/background_images/spring_blur.jpg");
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  overflow: hidden;
+  -webkit-transition: width 0.2s ease-in-out;
+  -moz-transition: width 0.2s ease-in-out;
+  -o-transition: width 0.2s ease-in-out;
+  -ms-transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
 }
 
-.main-login-container__section:nth-child(odd) {
+.main-login-container__section__button-container:nth-child(odd) {
   background-image: url("../../../../../static/general/assets/background_images/fall_blur.jpg");
+}
+
+.main-login-container__section__form-container {
+  width: 100%;
+  max-height: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.main-login-container__section__form-container__registry-form {
+  margin: 1rem auto;
+  width: 80%;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  background-color: rgba(158,158,158,0.2);
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 5%;
+}
+
+.main-login-container__section__form-container__registry-form__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-family: 'fertigo_proregular';
+  color: #efefef;
+}
+
+.main-login-container__section__form-container__registry-form__error-container {
+  width: 100%;
+  font-size: 1.1rem;
+  margin: 1rem 0 0 0;
+  color: #efefef;
+}
+
+.main-login-container__section__login-form {
+  margin: 1rem auto;
+  width: 80%;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
+  background-color: rgba(158,158,158,0.2);
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 5%;
+}
+
+.login-error {
+  background-color: #800080;
+  color: #efefef;
+  overflow: hidden;
+}
+
+.login-error__title {
+  font-size: 1rem;
+  padding: 0.25rem 0;
+  font-family: 'fertigo_proregular';
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
 }
 
 .footer {
@@ -10922,8 +11084,16 @@ html {
   background-color: #a8c545;
 }
 
+.u--student-background {
+  background-color: #5c653b;
+}
+
 .u--professor-color {
   background-color: #fc6e58;
+}
+
+.u--professor-background {
+  background-color: #652c23;
 }
 
 .u--max-width {
@@ -10932,5 +11102,24 @@ html {
 
 .u--min-width {
   width: 0;
+}
+
+.u--heightChange {
+  max-height: 1000px;
+}
+
+.u--show-container {
+  display: block;
+}
+
+.u--hide-container {
   display: none;
+}
+
+.u--hide-background {
+  background-image: none;
+}
+
+.u--hide-background:nth-child(odd) {
+  background-image: none;
 }

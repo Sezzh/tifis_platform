@@ -4,15 +4,33 @@
 .u--student-color
     background-color studentPrincipalColor
 
-
+.u--student-background
+    background-color desaturate(darken(studentPrincipalColor, 40%), 50%)
 
 //professor styles
 .u--professor-color
     background-color professorPrincipalColor
 
+.u--professor-background
+    background-color desaturate(darken(professorPrincipalColor, 60%), 50%)
+
 //general styles
 .u--max-width
     width 100%
+
 .u--min-width
     width 0
+
+.u--heightChange
+    max-height 1000px
+
+.u--show-container
+    display block
+
+.u--hide-container
     display none
+
+.u--hide-background
+    background-image none
+    &:nth-child(odd)
+        background-image none
