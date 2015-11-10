@@ -1,6 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 var $ = require('jquery');
+var Cookies = require('js-cookie');
 var mdl = require('../../node_modules/material-design-lite/material.js');
 var UserModule = require('./UserModule/');
 
@@ -9,11 +10,11 @@ var UserModule = require('./UserModule/');
     var Module = new UserModule();
 })();
 
-},{"../../node_modules/material-design-lite/material.js":4,"./UserModule/":2,"jquery":3}],2:[function(require,module,exports){
+},{"../../node_modules/material-design-lite/material.js":5,"./UserModule/":2,"jquery":3,"js-cookie":4}],2:[function(require,module,exports){
 'use strict';
 
 var $ = require('jquery');
-
+var Cookies = require('js-cookie');
 /**
  * variables with "$" means a jquery DOM object instead of normal
  * DOM object.
@@ -43,36 +44,15 @@ function UserModule() {
 
     var $registerForm = $('[data-form-registry="form"]');
     $registerForm.submit(function (event) {
-        var flag = false;
-        var form = {
-            dataAttribute: '',
-            dataValue: ''
-        };
+        event.preventDefault();
         var fragArgs = {
             attribute: 'data-form-registry',
             attributeValue: 'error',
             parentClass: 'main-login-container__section__form-container' + '__registry-form__error-container',
             childClass: 'main-login-container__section__form-container' + '__registry-form__error-container__msg'
         };
-
-        for (var i = 0; i < event.target.attributes.length; i++) {
-            if (event.target.attributes[i].name === fragArgs.attribute) {
-                form.dataAttribute = '[' + event.target.attributes[i].name + '=' + '"' + event.target.attributes[i].value + '"' + ']';
-                form.dataValue = event.target.attributes[i].value;
-            }
-        }
-
         //validation process on this function
-        flag = validateRegistryForm(event, form, fragArgs);
-        /* if flag is true all validation process is fine, so now we can send
-         * the form
-         */
-        if (flag === true) {
-            return; //this return send the form.
-        } else {
-                console.log('no pasa la validacion');
-                event.preventDefault();
-            }
+        validateRegistryForm(fragArgs);
     });
 
     var $passwordRepeatField = $('[data-form-registry="password_repeat"]');
@@ -190,9 +170,10 @@ function UserModule() {
      * @param <object> fragArgs
      * @return <boolean> flag
      */
-    function validateRegistryForm(event, form, fragArgs) {
-        var mail = document.querySelector('[data-form-registry="email"]');
-        var repeatMail = document.querySelector('[data-form-registry="email_repeat"]');
+    function validateRegistryForm(fragArgs) {
+        var form = document.querySelector('[data-form-registry="form"]');
+        var email = document.querySelector('[data-form-registry="email"]');
+        var repeatEmail = document.querySelector('[data-form-registry="email_repeat"]');
         var username = document.querySelector('[data-form-registry="username"]');
         var password = document.querySelector('[data-form-registry="password"]');
         var repeatPassword = document.querySelector('[data-form-registry="password_repeat"]');
@@ -201,8 +182,9 @@ function UserModule() {
         var lastName = document.querySelector('[data-form-registry="last_name"]');
         var motherLastName = document.querySelector('[data-form-registry="mother_last_name"]');
         var antibotField = document.querySelector('[data-form-registry="username_b"]');
+        var accountType = document.querySelector('[data-form-registry="account_type"]');
         var arrayWithErrors = [];
-        var arrayFields = [mail, repeatMail, username, password, repeatPassword, enrollment, name, lastName, motherLastName];
+        var arrayFields = [email, repeatEmail, username, password, repeatPassword, enrollment, name, lastName, motherLastName];
         var EMPTY_FIELD = 'Tienes algún campo vacio,' + ' no puedes dejar campos vacios.';
         var EMPTY_FIELDS = 'Tienes campos vacios, ' + 'todos los campos son obligatorios.';
         var LABEL_CHILD_POSITION = 3; //the position in DOM of the label
@@ -214,7 +196,17 @@ function UserModule() {
         var countError = 0;
         var parent;
         var sibling;
+        var formAtt = {};
         var args = { elements: [] };
+        var csrftoken = Cookies.get('csrftoken');
+        var xhrData;
+        var xhrUrl;
+        for (var i = 0; i < form.attributes.length; i++) {
+            if (form.attributes[i].name === 'data-form-registry') {
+                formAtt.dataAttribute = '[' + form.attributes[i].name + '=' + '"' + form.attributes[i].value + '"]';
+                formAtt.dataValue = form.attributes[i].value;
+            }
+        }
         for (var i = 0; i < arrayFields.length; i++) {
             if (!arrayFields[i].value) {
                 arrayWithErrors[i] = false; //the fild is empty
@@ -247,24 +239,48 @@ function UserModule() {
         } else if (countError === 1) {
             args.elements[0].content = EMPTY_FIELD;
             domFragment = createAdvanceFrags(args);
-            appendErrorRegistryFormToEnd(domFragment, form.dataAttribute);
+            appendErrorRegistryFormToEnd(domFragment, formAtt.dataAttribute);
         } else if (countError > 1) {
             args.elements[0].content = EMPTY_FIELDS;
             domFragment = createAdvanceFrags(args);
-            appendErrorRegistryFormToEnd(domFragment, form.dataAttribute);
+            appendErrorRegistryFormToEnd(domFragment, formAtt.dataAttribute);
         }
-        console.log('aqui llego el código');
-        if (mail.value === repeatMail.value) {
+        if (email.value === repeatEmail.value) {
             mailEquals = true;
         } else {}
         if (password.value === repeatPassword.value) {
             passEquals = true;
         } else {}
         if (mailEquals && passEquals && fieldsFilled && !antibotField.innerHTML) {
-            flag = true;
-            console.log('El formulario se va a mandar');
+            var xhrData = {
+                csrfmiddlewaretoken: csrftoken,
+                email: email.value,
+                username: username.value,
+                password: password.value,
+                enrollment: enrollment.value,
+                name: name.value,
+                last_name: lastName.value,
+                mother_last_name: motherLastName.value,
+                account_type: ''
+            };
+            for (var i = 0; i < form.attributes.length; i++) {
+                if (form.attributes[i].name === 'action') {
+                    xhrUrl = form.attributes[i].value;
+                }
+            }
+            for (var i = 0; i < accountType.attributes.length; i++) {
+                if (accountType.attributes[i].name === 'value') {
+                    xhrData.account_type = accountType.attributes[i].value;
+                }
+            }
+            //here we send the form with AJAX
+
+            Promise.resolve($.post(xhrUrl, xhrData)).then(function (response) {
+                args.elements[0].content = response.message + ' ' + 'Usuario: ' + response.username;
+                domFragment = createAdvanceFrags(args);
+                appendErrorRegistryFormToEnd(domFragment, formAtt.dataAttribute);
+            });
         }
-        return flag;
     }
 
     function setInputTypeAccount(value) {
@@ -394,7 +410,7 @@ function UserModule() {
 
 module.exports = UserModule;
 
-},{"jquery":3}],3:[function(require,module,exports){
+},{"jquery":3,"js-cookie":4}],3:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -9607,6 +9623,147 @@ return jQuery;
 }));
 
 },{}],4:[function(require,module,exports){
+/*!
+ * JavaScript Cookie v2.0.4
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+(function (factory) {
+	if (typeof define === 'function' && define.amd) {
+		define(factory);
+	} else if (typeof exports === 'object') {
+		module.exports = factory();
+	} else {
+		var _OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = _OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				value = encodeURIComponent(String(value));
+				value = value.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				return (document.cookie = [
+					key, '=', value,
+					attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+					attributes.path    && '; path=' + attributes.path,
+					attributes.domain  && '; domain=' + attributes.domain,
+					attributes.secure ? '; secure' : ''
+				].join(''));
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var name = parts[0].replace(rdecode, decodeURIComponent);
+				var cookie = parts.slice(1).join('=');
+
+				if (cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					cookie = converter && converter(cookie, name) || cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
+		}
+
+		api.get = api.set = api;
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
+
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init();
+}));
+
+},{}],5:[function(require,module,exports){
 ;(function() {
 "use strict";
 

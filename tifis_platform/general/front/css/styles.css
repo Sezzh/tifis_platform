@@ -11035,6 +11035,14 @@ html {
   color: #efefef;
 }
 
+.main-login-container__section__form-container__registry-form__error-container__msg {
+  -webkit-transition: height 0.2s ease-in-out;
+  -moz-transition: height 0.2s ease-in-out;
+  -o-transition: height 0.2s ease-in-out;
+  -ms-transition: height 0.2s ease-in-out;
+  transition: height 0.2s ease-in-out;
+}
+
 .main-login-container__section__login-form {
   margin: 1rem auto;
   width: 80%;

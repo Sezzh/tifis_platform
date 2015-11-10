@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('mother_last_name', models.CharField(max_length=50)),
                 ('enrollment', models.CharField(unique=True, max_length=15)),
-                ('user_id', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('mother_last_name', models.CharField(max_length=50)),
                 ('enrollment', models.CharField(unique=True, max_length=15)),
-                ('user_id', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
