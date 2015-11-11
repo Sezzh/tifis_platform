@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('usermodule.urls', namespace='usermodule')),
+    url(r'^', include('groupmodule.urls', namespace='groupmodule')),
     url(r'^admin/', include(admin.site.urls)),
 ]

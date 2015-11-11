@@ -1,4 +1,8 @@
 # -*- encoding: utf-8 -*-
+
+#debug stuff
+import pdb
+
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
@@ -77,10 +81,28 @@ def getlogin(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
+    #pdb.set_trace()
     if user is not None:
         if user.is_active:
             login(request, user)
-            return HttpResponseRedirect(reverse('usermodule:index'))
+            #This returns when all is ok with login stuff.
+            if hasattr(user, 'professor'):
+                #sending the id for get in the next module every period he has.
+                return HttpResponseRedirect(
+                    reverse(
+                        'groupmodule:professor_index',
+                        args=[user.professor.user_id]
+                    )
+                )
+            elif hasattr(user, 'student'):
+                return HttpResponseRedirect(
+                    reverse('groupmodule:student_index')
+                )
+            else:
+                login_error_message = 2 # something go wrong
+                return HttpResponseRedirect(
+                    reverse('usermodule:badlogin', args=[login_error_message])
+                )
         else:
             login_error_message = 1 #the user is inactive
             return HttpResponseRedirect(
