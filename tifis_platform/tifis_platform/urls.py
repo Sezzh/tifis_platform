@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^i18n/', include('django.conf.urls.i18n')), #perfom translations
     url(r'^', include('usermodule.urls', namespace='usermodule')),
     url(r'^', include('groupmodule.urls', namespace='groupmodule')),
     url(r'^admin/', include(admin.site.urls)),

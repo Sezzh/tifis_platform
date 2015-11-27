@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+#import ugettext_lazy for Internationalization using an alias
+from django.utils.translation import ugettext_lazy as _ #could be lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -40,9 +43,10 @@ INSTALLED_APPS = (
     'usermodule',
     'groupmodule',
 )
-
+# we add locale this is for Internationalization
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', #
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -63,6 +67,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.core.context_processors.i18n', #Internationalization v
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -93,6 +98,15 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en'
 
+# translation Options
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    ('ja', _('Japanese')),
+)
+
+
 TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
@@ -100,6 +114,13 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# Locale path for translations
+
+LOCALE_PATH = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
 
 
 # Static files (CSS, JavaScript, Images)
