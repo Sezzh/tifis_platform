@@ -12,18 +12,25 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
+from YamJam import yamjam
 #import ugettext_lazy for Internationalization using an alias
-from django.utils.translation import ugettext_lazy as _ #could be lazy
+from django.utils.translation import ugettext_lazy as _ #must be lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#sensitive data
+CFG = yamjam()['tifis']
+DBCFG = yamjam()['tifis']['database']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e%zoh^bxss1r03%oxspui!iqkk*c%m1=nb^fxkm1wv1ss9q_+u'
+# Original secret key:
+# 'e%zoh^bxss1r03%oxspui!iqkk*c%m1=nb^fxkm1wv1ss9q_+u'
+
+SECRET_KEY = CFG['django_secret_key']
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,12 +90,12 @@ WSGI_APPLICATION = 'tifis_platform.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tifis_platform',
-        'USER': 'tifis_platformuser',
-        'PASSWORD': 'tifis2015%%',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': DBCFG['engine'],
+        'NAME': DBCFG['name'],
+        'USER': DBCFG['user'],
+        'PASSWORD': DBCFG['password'],
+        'HOST': DBCFG['host'],
+        'PORT': DBCFG['port'],
     }
 }
 
@@ -118,7 +125,7 @@ USE_TZ = True
 
 # Locale path for translations
 
-LOCALE_PATH = (
+LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
 

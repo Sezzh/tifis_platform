@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 #debug stuff
-import pdb
+import ipdb
+#ipdb.set_trace()
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -134,3 +135,9 @@ def log_out(request):
     """
     logout(request)
     return HttpResponseRedirect(reverse('usermodule:results'))
+
+def language_selection(request):
+    """sign language options
+    """
+    context = {}
+    return render(request, 'usermodule/language_selection.html', context)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-25 00:49-0600\n"
+"POT-Creation-Date: 2015-12-01 18:48-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,3 +28,39 @@ msgstr "スペイン語"
 #: .\tifis_platform\settings.py:106
 msgid "Japanese"
 msgstr "日本語"
+
+#: .\usermodule\templates\base_header_footer.html:9
+msgid "Tifis Project"
+msgstr "チフィス　プロジェクト"
+
+#: .\usermodule\templates\base_header_footer.html:27
+msgid "Links"
+msgstr "リンク"
+
+#: .\usermodule\templates\base_header_footer.html:29
+msgid "About this app"
+msgstr "アプリについて"
+
+#: .\usermodule\templates\base_header_footer.html:30
+msgid "Privacy terms"
+msgstr "利用規約プライバシー"
+
+#: .\usermodule\templates\base_header_footer.html:31
+msgid "User manual"
+msgstr "ユーザーマニュアル"
+
+#: .\usermodule\templates\usermodule\language_selection.html:3
+msgid "Welcome"
+msgstr "ようこそ"
+
+#: .\usermodule\templates\usermodule\language_selection.html:7
+msgid "Current language: "
+msgstr "現在言語"
+
+#: .\usermodule\templates\usermodule\language_selection.html:19
+msgid "Change"
+msgstr "言語の変更"
+
+#: .\usermodule\templates\usermodule\language_selection.html:22
+msgid "Hello, World !!!"
+msgstr "世界のみんな様、　こんにちは"

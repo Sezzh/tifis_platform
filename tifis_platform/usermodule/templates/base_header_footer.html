@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load staticfiles %}
+
 {% block base_header %}
+
 <header class="header  header--background  js-header">
-    <h1 class="header__name-project">Tifis Project</h1>
+  <h1 class="header__name-project">{% trans 'Tifis Project' %}</h1>
+  <form class="header__language-container" action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+
+  </form>
 </header>
+
 {% endblock base_header %}
 
 
@@ -15,13 +23,13 @@
 
 {% block base_footer %}
 <footer class="footer">
-    <div class="footer__section">
-        <h3 class="footer__section__title">Enlaces</h3>
-        <ul class="footer__section__list">
-            <li class="footer__section__item"><a href="#" class="footer__section__item__link">Acerca de esta app</a></li>
-            <li class="footer__section__item"><a href="#" class="footer__section__item__link">Aviso de privacidad</a></li>
-            <li class="footer__section__item"><a href="#" class="footer__section__item__link">Manual de usuario</a></li>
-        </ul>
-    </div>
+  <div class="footer__section">
+    <h3 class="footer__section__title">{% trans 'Links' %}</h3>
+    <ul class="footer__section__list">
+      <li class="footer__section__item"><a href="#" class="footer__section__item__link">{% trans 'About this app' %}</a></li>
+      <li class="footer__section__item"><a href="#" class="footer__section__item__link">{% trans 'Privacy terms' %}</a></li>
+      <li class="footer__section__item"><a href="#" class="footer__section__item__link">{% trans 'User manual' %}</a></li>
+    </ul>
+  </div>
 </footer>
 {% endblock base_footer %}
