@@ -13,6 +13,7 @@
     "js-cookie": "2.0.4",
     "livereload": "^0.3.7",
     "lodash.assign": "^3.2.0",
+    "material-design-lite": "^1.0.6",
     "nib": "^1.1.0",
     "normalize-styl": "^3.0.3",
     "vinyl-buffer": "^1.0.0",

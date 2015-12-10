@@ -1,6 +1,5 @@
 env
 node_modules
-packages
 original_key.txt
 python_dependencies.txt
 *.pyc
