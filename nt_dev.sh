@@ -1,13 +1,18 @@
 #! /bin/sh
 
+echo "We are going to install some python dependencies por develop this project."
+echo "installing virtualenv..."
 pip install virtualenv
-
+echo "done.."
+echo "Creating a new env dir into this folder where will be the environment"
 virtualenv env
-
+cho "enable virtual environment"
 source env/Scripts/activate
+echo "Installing all dev python dependencies of this project..."
+pip install -r dev_requirements.txt
 
-easy_install binaries/psycopg2-2.6.1.win-amd64-py2.7-pg9.4.4-release.exe
+echo "these are the dependencies that have been installed: "
 
-pip install -I django==1.8.6
+pip freeze
 
-pip install ipython ipdb pyreadline yamjam
+echo "all done.."

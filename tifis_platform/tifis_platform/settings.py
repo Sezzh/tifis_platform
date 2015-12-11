@@ -26,8 +26,6 @@ DBCFG = yamjam()['tifis']['database']
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Original secret key:
-# 'e%zoh^bxss1r03%oxspui!iqkk*c%m1=nb^fxkm1wv1ss9q_+u'
 
 SECRET_KEY = CFG['django_secret_key']
 

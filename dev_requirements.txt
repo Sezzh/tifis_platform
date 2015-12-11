@@ -1,0 +1,8 @@
+# Developer Requirements for tifis platform
+
+ipython
+ipdb
+pyreadline == 2.1
+django == 1.8.6
+yamjam == 0.1.7
+psycopg2 == 2.6.1
