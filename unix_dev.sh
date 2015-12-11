@@ -1,11 +1,11 @@
 #! /bin/sh
 
-echo "We are going to install some python dependencies por develop this project."
+echo "We are going to install some python dependencies for develop this project."
 echo "installing virtualenv..."
 sudo pip install virtualenv
 echo "done.."
 echo "Creating a new env dir into this folder where will be the environment"
-virutalenv env
+virtualenv env
 echo "enable virtual environment"
 source env/bin/activate
 echo "Installing all dev python dependencies of this project..."
