@@ -7,7 +7,7 @@ echo "done.."
 echo "Creating a new env dir into this folder where will be the environment"
 virtualenv env
 echo "enable virtual environment"
-source env/bin/activate
+. env/bin/activate
 echo "Installing all dev python dependencies of this project..."
 pip install -r dev_requirements.txt
 echo "OK!"
