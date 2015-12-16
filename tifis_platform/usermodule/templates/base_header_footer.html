@@ -1,17 +1,32 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 {% load staticfiles %}
+
+{% get_language_info for LANGUAGE_CODE as lang %}
 
 {% block base_header %}
 
 <header class="header  header--background  js-header">
   <h1 class="header__name-project">{% trans 'Tifis Project' %}</h1>
-  <form class="header__language-container" action="{% url 'set_language' %}" method="post">
-    {% csrf_token %}
-
-  </form>
+  {% get_current_language as LANGUAGE_CODE %}
+  <button type="button" class="header__language-btn" data-language="btn_language"><span class="flag-icon  flag-icon-{{ LANGUAGE_CODE }}  flag-icon-squared header__language-btn__flag"></span></button>
 </header>
+<form class="language-container" action="{% url 'set_language' %}" method="post" data-language="container">
+  <h3 class="language-container__title">Language</h3>
+  {% csrf_token %}
+  <input name="next" type="hidden" value="{{ redirect_to }}" />
+  {% get_available_languages as LANGUAGES %}
+  {% get_language_info_list for LANGUAGES as languages %}
+  <ul class="language-container__list">
+    {% for language in languages %}
+    {% if language.code != LANGUAGE_CODE %}
+      <li class="language-container__list__item">
+        <button type="submit" class="language-container__list__item__btn  mdl-button--raised" name="language" value="{{ language.code }}"><span class="language-container__list__item__btn__flag-container  flag-icon  flag-icon-{{ language.code }}  flag-icon-squared"></span></button>
+      </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</form>
 
 {% endblock base_header %}
 

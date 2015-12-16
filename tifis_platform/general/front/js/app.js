@@ -76,6 +76,17 @@ function UserModule() {
         };
         validateFields($('[data-form-registry="email"]').val(), $emailRepeatField.val(), event, fragArgs);
     });
+    /**
+     * check if this if really works
+     */
+    if (document.querySelector('[data-language="btn_language"]') != null) {
+        var $languageBtn = $('[data-language="btn_language"]');
+        $languageBtn[0].addEventListener('click', function (event) {
+            var $languageContainer = $('[data-language="container"]');
+            $languageContainer.toggleClass('u--show-container');
+            $languageContainer.toggleClass('u--show-language-menu');
+        });
+    }
 
     /**
      * openLoginRegisterForm()

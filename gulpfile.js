@@ -29,7 +29,7 @@ opts = assign({}, watchify.args, opts);
 
 gulp.task('build:js', ['js', 'js:watch']);
 gulp.task('build:css', ['styl', 'styles:watch']);
-gulp.task('build:all', ['js:watch', 'styles:watch']);
+gulp.task('build:all', ['js', 'styl', 'js:watch', 'styles:watch']);
 
 //gulp tasks
 

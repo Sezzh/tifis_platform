@@ -1,120 +1,178 @@
 .header
-    //box-shadow 0 8px 16px rgba(0, 0, 0, 0.25)
-    position fixed
-    top 0
-    left 0
-    right 0
-    z-index 1
-    width 100%
-    height 3.75rem
-    overflow hidden
-    transition background .5s ease-in-out
-    &__name-project
-        width 100%
-        text-align center
-        font-family mainFontFamily
-        margin 0
-        line-height 3.75rem
+  box-shadow 0 8px 16px rgba(0, 0, 0, 0.25)
+  position fixed
+  display flex
+  justify-content space-between
+  align-items strech
+  top 0
+  left 0
+  right 0
+  z-index 1
+  width 100%
+  height 3.75rem
+  overflow hidden
+  transition background .5s ease-in-out
+  &__name-project
+    text-align center
+    font-family mainFontFamily
+    margin 0 .5rem
+    line-height 3.75rem
+    padding 0
+    text-decoration none
+    z-index 2
+    font-size 1.7rem
+    color brightFontColor
+    position relative
+  &--background
+    background-image url(schoolBackground)
+    background-position center
+    background-size cover
+    &:before
+      background-color rgba(4,4,4,.5) //darkBackgroundColor
+      content ""
+      display block
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+  &__language-btn
+    z-index 2
+    background-color inherit
+    border none
+    box-sizing border-box
+    padding 0 1.5rem
+    brightGlassEffect()
+    &__flag
+      border-radius 50%
+      font-size 1.5rem
+      box-shadow 0px 0px 2px darkFontColor
+
+.language-container
+  raisedEffect()
+  background-color darkBackgroundColor
+  padding .5rem .25rem
+  position fixed
+  z-index 3
+  top 0
+  right 0
+  border-radius 0 0 0 .4rem
+  transform translateX(100%)
+  transition transform .2s ease
+  overflow hidden
+  &__title
+    font-size 1.2rem
+    margin 1rem
+    font-family mainFontFamily
+    color brightFontColor
+  &__list
+    padding 0
+    margin 0
+    &__item
+      list-style-type none
+      margin 0
+      display block
+      padding 0
+      &__btn
+        margin 1rem auto
+        display block
         padding 0
-        text-decoration none
-        z-index 2
-        font-size 1.8rem
+        font-size 2rem
+        background-color inherit
+        width 4rem
+        height 4rem
+        border none
+        text-transform uppercase
         color brightFontColor
-        position relative
-    &--background
-        background-image url('/static/general/assets/background_images/cu.jpg')
-        background-position center
-        background-size cover
-        &:before
-            background-color rgba(4,4,4,.5) //darkBackgroundColor
-            content ""
-            display block
-            position absolute
-            top 0
-            left 0
-            width 100%
-            height 100%
+        border-radius 50%
+        &__flag-container
+          border-radius 50%
+          font-size 2rem
 
 .main-login-container
-    width 100%
-    height auto
+  width 100%
+  height auto
+  display flex
+  flex-wrap wrap
+  overflow hidden
+  margin-top 3.75rem
+  &__section
     display flex
     flex-wrap wrap
+    width 100%
+    background-color darkBackgroundColor
     overflow hidden
-    margin-top 3.75rem
-    &__section
-        display flex
-        flex-wrap wrap
-        width 100%
-        background-color darkBackgroundColor
-        overflow hidden
-        position relative
-        &__phrase
-            font-family mainFontFamily
-            color brightFontColor
-            font-size 1.2rem
-            line-height 1.4rem
-            width 80%
-            margin .5rem auto
-            raisedEffect()
-        &__button-container
-            width 50%
-            background-image url('/static/general/assets/background_images/spring_blur.jpg')
-            background-position center
-            background-size cover
-            overflow hidden
-            transition width .2s ease-in-out
-            &:nth-child(odd)
-                background-image url('/static/general/assets/background_images/fall_blur.jpg')
-        &__form-container
-            width 100%
-            max-height 0
-            transition all .5s ease-in-out
-            &__registry-form
-                margin 1rem auto
-                width 80%
-                raisedEffect()
-                &__title
-                    margin 0
-                    font-size 1.1rem
-                    font-family mainFontFamily
-                    color brightFontColor
-                &__error-container
-                    width 100%
-                    font-size 1.1rem
-                    margin 1rem 0 0 0
-                    color brightFontColor
-                    &__msg
-                        transition height .2s ease-in-out
-        &__login-form
-            margin 1rem auto
-            width 80%
-            raisedEffect()
+    position relative
+    &__phrase
+      font-family mainFontFamily
+      color brightFontColor
+      font-size 1.2rem
+      line-height 1.4rem
+      width 80%
+      margin .5rem auto
+      raisedEffect()
+    &__button-container
+      width 50%
+      background-image url(studentBackgroundImg)
+      background-position center
+      background-size cover
+      overflow hidden
+      transition width .2s ease-in-out
+      &:nth-child(odd)
+        background-image url(professorBackgroundImg)
+    &__form-container
+      width 100%
+      max-height 0
+      transition all .5s ease-in-out
+      &__registry-form
+        margin 1rem auto
+        width 80%
+        raisedEffect()
+        &__title
+          margin 0
+          font-size 1.1rem
+          font-family mainFontFamily
+          color brightFontColor
+        &__error-container
+          width 100%
+          font-size 1.1rem
+          margin 1rem 0 0 0
+          color brightFontColor
+          &__msg
+            transition height .2s ease-in-out
+    &__login-form
+      margin 1rem auto
+      width 80%
+      raisedEffect()
 
 .login-error
-    background-color purple
-    color brightFontColor
-    overflow hidden
-    &__title
-        font-size 1rem
-        padding .25rem 0
-        font-family mainFontFamily
-        margin 0 auto
-        width 90%
-        text-align center
+  background-color purple
+  color brightFontColor
+  overflow hidden
+  &__title
+    font-size 1rem
+    padding .25rem 0
+    font-family mainFontFamily
+    margin 0 auto
+    width 90%
+    text-align center
 
 .footer
-    background-color darkBackgroundColor
-    color brightFontColor
-    &__section
-        &__title
-            font-size 1.6rem
-            font-family mainFontFamily
-            margin 0 auto
-            width 95%
-            padding-top 1rem
-            padding-left .5rem
-        &__item
-            &__link
-                font-size 1rem
-                text-decoration none
+  background-color darkBackgroundColor
+  color brightFontColor
+  &__section
+    &__title
+      font-size 1.6rem
+      font-family mainFontFamily
+      margin 0 auto
+      width 95%
+      padding-top 1rem
+      padding-left .5rem
+    &__item
+      &__link
+        font-size 1rem
+        text-decoration none
+
+//break points
+
+//@media (min-width 25rem)
