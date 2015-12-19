@@ -70,13 +70,13 @@ def create_new_user(request):
 
 
 
-def view_to_login(request):
+def view_to_log_in(request):
     """This returns the login for all system.
     """
     return render(request, 'usermodule/login.html')
 
 
-def getlogin(request):
+def get_log_in(request):
     """This do the work for login all users in the system.
     """
     username = request.POST['username']
@@ -102,21 +102,21 @@ def getlogin(request):
             else:
                 login_error_message = 2 # something go wrong
                 return HttpResponseRedirect(
-                    reverse('usermodule:badlogin', args=[login_error_message])
+                    reverse('usermodule:bad_log_in', args=[login_error_message])
                 )
         else:
             login_error_message = 1 #the user is inactive
             return HttpResponseRedirect(
-                reverse('usermodule:badlogin', args=[login_error_message])
+                reverse('usermodule:bad_log_in', args=[login_error_message])
             )
     else:
         login_error_message = 2 # something go wrong
         return HttpResponseRedirect(
-            reverse('usermodule:badlogin', args=[login_error_message])
+            reverse('usermodule:bad_log_in', args=[login_error_message])
         )
 
 
-def badlogin(request, login_error_message):
+def bad_log_in(request, login_error_message):
     """This return errors for the user when happens a bad login in the whole
     system.
     """
@@ -135,9 +135,3 @@ def log_out(request):
     """
     logout(request)
     return HttpResponseRedirect(reverse('usermodule:results'))
-
-def language_selection(request):
-    """sign language options
-    """
-    context = {}
-    return render(request, 'usermodule/language_selection.html', context)

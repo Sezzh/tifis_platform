@@ -10800,6 +10800,45 @@ _:-ms-input-placeholder,
 }
 
 @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../icons/MaterialIcons-Regular.eot");
+  /* For IE6-8 */
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url("../icons/MaterialIcons-Regular.woff2") format('woff2'), url("../icons/MaterialIcons-Regular.woff") format('woff'), url("../icons/MaterialIcons-Regular.ttf") format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+  /* here is where you have to put utilities classes for icons */
+}
+
+.material-icons.md-1_7rem {
+  font-size: 1.7rem;
+}
+
+@font-face {
   font-family: 'fertigo_proregular';
   src: url("../fonts/fertigo_pro-webfont.eot");
   src: url("../fonts/fertigo_pro-webfont.eot?#iefix") format('embedded-opentype'), url("../fonts/fertigo_pro-webfont.woff2") format('woff2'), url("../fonts/fertigo_pro-webfont.woff") format('woff'), url("../fonts/fertigo_pro-webfont.ttf") format('truetype'), url("../fonts/fertigo_pro-webfont.svg#fertigo_proregular") format('svg');
@@ -12871,6 +12910,7 @@ _:-ms-input-placeholder,
 
 .mdl-textfield--block {
   display: block;
+  width: 100%;
 }
 
 .mdl-textfield__label--professor {
@@ -13037,6 +13077,7 @@ html {
   margin: 1rem;
   font-family: 'fertigo_proregular';
   color: #efefef;
+  text-transform: capitalize;
 }
 
 .language-container__list {
@@ -13116,7 +13157,7 @@ html {
   font-size: 1.2rem;
   line-height: 1.4rem;
   width: 80%;
-  margin: 0.5rem auto;
+  margin: 1rem auto 0.5rem auto;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   background-color: rgba(158,158,158,0.2);
@@ -13147,6 +13188,7 @@ html {
 .main-login-container__section__form-container {
   width: 100%;
   max-height: 0;
+  overflow: hidden;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
@@ -13155,18 +13197,35 @@ html {
 }
 
 .main-login-container__section__form-container__registry-form {
-  margin: 1rem auto;
-  width: 80%;
+  margin: 1rem auto 1rem auto;
+  width: 90%;
+  overflow: hidden;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   background-color: rgba(158,158,158,0.2);
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  padding: 5%;
+  padding: 0;
+}
+
+.main-login-container__section__form-container__registry-form__mdl-textfield {
+  display: block;
+  text-transform: capitalize;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.main-login-container__section__form-container__registry-form__mdl-button {
+  display: block;
+  margin: 0 5% 1rem auto;
 }
 
 .main-login-container__section__form-container__registry-form__title {
-  margin: 0;
+  display: block;
+  text-transform: capitalize;
+  margin: 0 auto;
+  width: 90%;
+  padding-top: 1rem;
   font-size: 1.1rem;
   font-family: 'fertigo_proregular';
   color: #efefef;
@@ -13189,13 +13248,31 @@ html {
 
 .main-login-container__section__login-form {
   margin: 1rem auto;
-  width: 80%;
+  width: 90%;
+  overflow: hidden;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   background-color: rgba(158,158,158,0.2);
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  padding: 5%;
+  padding: 0;
+}
+
+.main-login-container__section__login-form:first-child {
+  padding-top: 1rem;
+}
+
+.main-login-container__section__login-form__mdl-textfield {
+  text-transform: capitalize;
+  display: block;
+  width: 90%;
+  margin: 0.25rem auto;
+}
+
+.main-login-container__section__login-form__mdl-button {
+  display: block;
+  padding: 0 4rem;
+  margin: 0.5rem auto 2rem auto;
 }
 
 .login-error {
@@ -13218,18 +13295,70 @@ html {
   color: #efefef;
 }
 
-.footer__section__title {
-  font-size: 1.6rem;
-  font-family: 'fertigo_proregular';
+.footer__section {
+  width: 90%;
   margin: 0 auto;
-  width: 95%;
-  padding-top: 1rem;
-  padding-left: 0.5rem;
 }
 
-.footer__section__item__link {
+.footer__section__wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.footer__section__wrapper__icon {
+  color: #efefef;
+  margin-right: 0.5rem;
+}
+
+.footer__section__wrapper__title {
+  padding: 0;
+  font-size: 1.7rem;
+  font-family: 'fertigo_proregular';
+  margin: 0;
+}
+
+.footer__section__list {
+  margin: 0.25rem 0;
+}
+
+.footer__section__list__item {
+  padding: 0.1rem 0;
+}
+
+.footer__section__list__item__link {
   font-size: 1rem;
   text-decoration: none;
+  color: #efefef;
+}
+
+@media (min-width: 53rem) {
+  .main-login-container__section__login-form {
+    width: 30rem;
+  }
+
+  .main-login-container__section__form-container__registry-form__mdl-textfield {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 30%;
+    margin-left: 10%;
+  }
+
+  .main-login-container__section__form-container__registry-form__mdl-button {
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 0 0 1rem 10%;
+  }
 }
 
 .u--student-color {

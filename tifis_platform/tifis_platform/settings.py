@@ -140,8 +140,8 @@ STATICFILES_DIRS = (
 )
 
 
-LOGIN_REDIRECT_URL = 'usermodule:login'
+LOGIN_REDIRECT_URL = 'usermodule:log_in'
 
-LOGIN_URL = 'usermodule:login'
+LOGIN_URL = 'usermodule:log_in'
 
 LOGOUT_URL = 'usermodule:log_out'

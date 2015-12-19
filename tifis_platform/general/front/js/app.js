@@ -77,8 +77,8 @@ function UserModule() {
         validateFields($('[data-form-registry="email"]').val(), $emailRepeatField.val(), event, fragArgs);
     });
     /**
-     * check if this if really works
-     */
+    * check if this if really works
+    */
     if (document.querySelector('[data-language="btn_language"]') != null) {
         var $languageBtn = $('[data-language="btn_language"]');
         $languageBtn[0].addEventListener('click', function (event) {
@@ -413,8 +413,7 @@ function UserModule() {
 
     function getPhrases() {
         return Promise.resolve($.get('/static/general/js/phrases.json')).then(function (res) {
-            var data = JSON.parse(res);
-            return Promise.resolve(data);
+            return Promise.resolve(res);
         });
     }
 }

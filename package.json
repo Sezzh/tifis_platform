@@ -2,7 +2,6 @@
   "devDependencies": {
     "babelify": "6.1.2",
     "browserify": "9.0.8",
-    "flag-icon-css": "^0.8.2",
     "gulp": "3.9.0",
     "gulp-concat-css": "2.2.0",
     "gulp-livereload": "^3.8.1",
