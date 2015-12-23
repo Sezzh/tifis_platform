@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-#debug stuff
+# debug stuff
 import ipdb
-#ipdb.set_trace()
+# ipdb.set_trace() if you want to debug something
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -11,6 +11,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
 from django.contrib.auth.models import Group, User
 from django.db import IntegrityError
+from django.utils.translation import ugettext as _
 
 from .models import Professor, Student
 # Create your views here.
@@ -57,13 +58,13 @@ def create_new_user(request):
         # error if the username already exist in the database.
         context = {
             'username': username,
-            'message': 'El usuario ya exisite, elige otro',
+            'message': _('This username already exist.'),
         }
         return JsonResponse(context)
     # if all is fine just told to the user he alredy got an account.
     context = {
         'username': username,
-        'message': 'Todo salio bien, ahora inicia sesión',
+        'message': _('The registration is complete. Now you can login.'),
     }
     return JsonResponse(context)
     #return render(request, 'usermodule/testview.html', context)
@@ -73,7 +74,7 @@ def create_new_user(request):
 def view_to_log_in(request):
     """This returns the login for all system.
     """
-    return render(request, 'usermodule/login.html')
+    return render(request, 'usermodule/index.html')
 
 
 def get_log_in(request):
@@ -121,9 +122,9 @@ def bad_log_in(request, login_error_message):
     system.
     """
     if login_error_message == '1':
-        login_error_message = 'El usuario parece estar inactivo...'
+        login_error_message = _('The username seems to be inactive.')
     if login_error_message == '2':
-        login_error_message = 'Algo salio mal intenta de nuevo...'
+        login_error_message = _('Something go wrong, try again.')
     context = {
         'login_error_message': login_error_message
     }

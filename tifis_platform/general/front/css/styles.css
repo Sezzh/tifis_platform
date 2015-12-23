@@ -10838,6 +10838,14 @@ _:-ms-input-placeholder,
   font-size: 1.7rem;
 }
 
+.material-icons.md-redcolor {
+  color: #fc6e58;
+}
+
+.material-icons.md-greencolor {
+  color: #a8c545;
+}
+
 @font-face {
   font-family: 'fertigo_proregular';
   src: url("../fonts/fertigo_pro-webfont.eot");
@@ -13232,10 +13240,14 @@ html {
 }
 
 .main-login-container__section__form-container__registry-form__error-container {
-  width: 100%;
+  width: 90%;
   font-size: 1.1rem;
-  margin: 1rem 0 0 0;
+  margin: 0 auto 1rem auto;
   color: #efefef;
+}
+
+.main-login-container__section__form-container__registry-form__error-container--validate {
+  margin: 0 auto;
 }
 
 .main-login-container__section__form-container__registry-form__error-container__msg {
@@ -13345,6 +13357,14 @@ html {
 @media (min-width: 53rem) {
   .main-login-container__section__login-form {
     width: 30rem;
+  }
+
+  .main-login-container__section__form-container__registry-form__error-container--validate {
+    width: 3rem;
+    display: inline-block;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    vertical-align: middle;
   }
 
   .main-login-container__section__form-container__registry-form__mdl-textfield {

@@ -149,10 +149,12 @@
           font-family mainFontFamily
           color brightFontColor
         &__error-container
-          width 100%
+          width 90%
           font-size 1.1rem
-          margin 1rem 0 0 0
+          margin 0 auto 1rem auto
           color brightFontColor
+          &--validate
+            margin 0 auto
           &__msg
             transition height .2s ease-in-out
     &__login-form
@@ -220,6 +222,13 @@
         width 30rem
       &__form-container
         &__registry-form
+          &__error-container
+            &--validate
+              width 3rem
+              display inline-block
+              margin-left 2rem
+              margin-bottom 1rem
+              vertical-align middle
           &__mdl-textfield
             display inline-block
             vertical-align bottom
