@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-#debug stuff
-import pdb
+# debug stuff
+import ipdb
+# ipdb.set_trace() if you want to debug something
 
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
@@ -10,6 +11,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
 from django.contrib.auth.models import Group, User
 from django.db import IntegrityError
+from django.utils.translation import ugettext as _
 
 from .models import Professor, Student
 # Create your views here.
@@ -56,26 +58,26 @@ def create_new_user(request):
         # error if the username already exist in the database.
         context = {
             'username': username,
-            'message': 'El usuario ya exisite, elige otro',
+            'message': _('This username already exist.'),
         }
         return JsonResponse(context)
     # if all is fine just told to the user he alredy got an account.
     context = {
         'username': username,
-        'message': 'Todo salio bien, ahora inicia sesión',
+        'message': _('The registration is complete. Now you can login.'),
     }
     return JsonResponse(context)
     #return render(request, 'usermodule/testview.html', context)
 
 
 
-def view_to_login(request):
+def view_to_log_in(request):
     """This returns the login for all system.
     """
-    return render(request, 'usermodule/login.html')
+    return render(request, 'usermodule/index.html')
 
 
-def getlogin(request):
+def get_log_in(request):
     """This do the work for login all users in the system.
     """
     username = request.POST['username']
@@ -101,28 +103,28 @@ def getlogin(request):
             else:
                 login_error_message = 2 # something go wrong
                 return HttpResponseRedirect(
-                    reverse('usermodule:badlogin', args=[login_error_message])
+                    reverse('usermodule:bad_log_in', args=[login_error_message])
                 )
         else:
             login_error_message = 1 #the user is inactive
             return HttpResponseRedirect(
-                reverse('usermodule:badlogin', args=[login_error_message])
+                reverse('usermodule:bad_log_in', args=[login_error_message])
             )
     else:
         login_error_message = 2 # something go wrong
         return HttpResponseRedirect(
-            reverse('usermodule:badlogin', args=[login_error_message])
+            reverse('usermodule:bad_log_in', args=[login_error_message])
         )
 
 
-def badlogin(request, login_error_message):
+def bad_log_in(request, login_error_message):
     """This return errors for the user when happens a bad login in the whole
     system.
     """
     if login_error_message == '1':
-        login_error_message = 'El usuario parece estar inactivo...'
+        login_error_message = _('The username seems to be inactive.')
     if login_error_message == '2':
-        login_error_message = 'Algo salio mal intenta de nuevo...'
+        login_error_message = _('Something go wrong, try again.')
     context = {
         'login_error_message': login_error_message
     }

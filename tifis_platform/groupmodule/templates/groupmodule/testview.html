@@ -1,5 +1,13 @@
-<h1>Period</h1>
+{% extends "base.html" %}
+{% load i18n %}
 
-<h3>{{ work }}</h3>
+{% block title %}{% trans 'group list' %}{% endblock  %}
 
-<h2>{{ usuario }}</h2>
+{% block content %}
+<main>
+  <h1>Period</h1>
+  <h3>{{ work }}</h3>
+  <h2>{{ usuario }}</h2>
+  <button type="button" name="button" data-groupmodule-btn="professor">kuki</button>
+</main>
+{% endblock content %}

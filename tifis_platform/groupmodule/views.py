@@ -26,6 +26,7 @@ def professor_index(request, professor_id):
     else:
         return HttpResponseRedirect(reverse('groupmodule:student_index'))
 
+@login_required
 def student_index(request):
     if hasattr(request.user, 'student'):
         if request.user.is_authenticated():

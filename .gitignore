@@ -1,6 +1,8 @@
 env
 node_modules
-packages
+original_key.txt
+python_dependencies.txt
 *.pyc
+*.mo
 /tifis_platform/general/front/css/styles.css
 /tifis_platform/general/front/js/app.js

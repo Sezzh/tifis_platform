@@ -1,77 +1,79 @@
 {% extends "base_header_footer.html" %}
 
-{% block title %}Inicia sesión{% endblock  %}
+{% load i18n %}
+
+{% block title %}{% trans 'log in' %}{% endblock  %}
 
 {% block content %}
-    <main class="main-login-container">
-        <section data-form="registry" class="main-login-container__section  js-main-login-container__section">
-            <div data-btn-container="professor" class="main-login-container__section__button-container">
-                <button data-btn="professor" class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--big" type="button">Profesor</button>
-            </div>
-            <div data-btn-container="student" class="main-login-container__section__button-container">
-                <button data-btn="student" class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--big" type="button">Alumno</button>
-            </div>
-            <div data-form-registry="container" class="main-login-container__section__form-container">
-                <form class="main-login-container__section__form-container__registry-form" data-form-registry="form" action="{% url 'usermodule:create_new_user' %}" method="post">
-                    <h3 class="main-login-container__section__form-container__registry-form__title">Crea una cuenta</h3>
-                    {% csrf_token %}
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="email" class="mdl-textfield__input  mdl-textfield__input--bright" name="email" data-form-registry="email">
-                        <label for="email" class="mdl-textfield__label">algo@mail.com</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="email" class="mdl-textfield__input  mdl-textfield__input--bright" name="email_repeat" data-form-registry="email_repeat">
-                        <label for="email" class="mdl-textfield__label">repetir mail</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="text" name="username" class="mdl-textfield__input mdl-textfield__input--bright" data-form-registry="username">
-                        <label for="username" class="mdl-textfield__label">Elige usuario</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="password" class="mdl-textfield__input  mdl-textfield__input--bright" name="password" data-form-registry="password">
-                        <label for="password" class="mdl-textfield__label">Contraseña</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="password" class="mdl-textfield__input  mdl-textfield__input--bright" name="password_repeat" data-form-registry="password_repeat">
-                        <label for="password" class="mdl-textfield__label">Repetir contraseña</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="text" name="enrollment" class="mdl-textfield__input  mdl-textfield__input--bright" data-form-registry="enrollment">
-                        <label for="enrollment" class="mdl-textfield__label">Matricula</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="text" name="name" class="mdl-textfield__input  mdl-textfield__input--bright" data-form-registry="name">
-                        <label for="name" class="mdl-textfield__label">Nombre</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="text" name="last_name" class="mdl-textfield__input  mdl-textfield__input--bright" data-form-registry="last_name">
-                        <label for="last_name" class="mdl-textfield__label">Apellido paterno</label>
-                    </div>
-                    <div class="mdl-textfield  mdl-js-textfield">
-                        <input type="text" name="mother_last_name" class="mdl-textfield__input  mdl-textfield__input--bright" data-form-registry="mother_last_name">
-                        <label for="mother_last_name" class="mdl-textfield__label">Apellido materno</label>
-                    </div>
-                    <input type="text" data-form-registry="username_b" name="username_b" class="u--hide-container">
-                    <input data-form-registry="account_type" type="hidden" name="account_type" value="">
-                    <input type="submit" class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--form-session" value="Registrar cuenta">
-                </form>
-            </div>
-        </section>
-        <section data-section="login" class="main-login-container__section  js-main-login-container__section  main-login-container__section--solid-container">
-            <form class="main-login-container__section__login-form" data-login="form" action="{% url 'usermodule:getlogin' %}" method="post">
-                {% csrf_token %}
-                <div class="mdl-textfield  mdl-js-textfield">
-                    <input type="text" class="mdl-textfield__input  mdl-textfield__input--bright" name="username">
-                    <label class="mdl-textfield__label  mdl-textfield__label--login" for="username">Usuario</label>
-                </div>
-                <div class="mdl-textfield  mdl-js-textfield">
-                    <input type="password" class="mdl-textfield__input  mdl-textfield__input--bright" name="password">
-                    <label class="mdl-textfield__label  mdl-textfield__label--login" for="password">Contraseña</label>
-                </div>
-                <input type="submit" class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--form-session" value="Iniciar Sesión">
-            </form>
-        </section>
-    </main>
+<main class="main-login-container" data-module="usermodule">
+  <section data-usermodule-form="registry" class="main-login-container__section  js-main-login-container__section">
+    <div data-usermodule-btn-container="professor" class="main-login-container__section__button-container">
+      <button data-usermodule-btn="professor" class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--big" type="button">{% trans 'professor' %}</button>
+    </div>
+    <div data-usermodule-btn-container="student" class="main-login-container__section__button-container">
+      <button data-usermodule-btn="student" class="mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--big" type="button">{% trans 'student' %}</button>
+    </div>
+    <div data-usermodule-form-registry="container" class="main-login-container__section__form-container">
+      <form class="main-login-container__section__form-container__registry-form" data-usermodule-form-registry="form" action="{% url 'usermodule:create_new_user' %}" method="post">
+        {% csrf_token %}
+        <h3 class="main-login-container__section__form-container__registry-form__title">{% trans 'create an account' %}</h3>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="email" class="mdl-textfield__input  mdl-textfield__input--bright" name="email" data-usermodule-form-registry="email">
+          <label for="email" class="mdl-textfield__label">{% trans 'something@mail.com' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="email" class="mdl-textfield__input  mdl-textfield__input--bright" name="email_repeat" data-usermodule-form-registry="email_repeat">
+          <label for="email" class="mdl-textfield__label">{% trans 'repeat@mail.com' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="text" name="username" class="mdl-textfield__input mdl-textfield__input--bright" data-usermodule-form-registry="username">
+          <label for="username" class="mdl-textfield__label">{% trans 'username' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="text" name="enrollment" class="mdl-textfield__input  mdl-textfield__input--bright" data-usermodule-form-registry="enrollment">
+          <label for="enrollment" class="mdl-textfield__label">{% trans 'enrollment' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="password" class="mdl-textfield__input  mdl-textfield__input--bright" name="password" data-usermodule-form-registry="password">
+          <label for="password" class="mdl-textfield__label">{% trans 'password' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="password" class="mdl-textfield__input  mdl-textfield__input--bright" name="password_repeat" data-usermodule-form-registry="password_repeat">
+          <label for="password" class="mdl-textfield__label">{% trans 'repeat password' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="text" name="name" class="mdl-textfield__input  mdl-textfield__input--bright" data-usermodule-form-registry="name">
+          <label for="name" class="mdl-textfield__label">{% trans 'name' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="text" name="last_name" class="mdl-textfield__input  mdl-textfield__input--bright" data-usermodule-form-registry="last_name">
+          <label for="last_name" class="mdl-textfield__label">{% trans 'father last name' %}</label>
+        </div>
+        <div class="main-login-container__section__form-container__registry-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+          <input type="text" name="mother_last_name" class="mdl-textfield__input  mdl-textfield__input--bright" data-usermodule-form-registry="mother_last_name">
+          <label for="mother_last_name" class="mdl-textfield__label">{% trans 'mother last name' %}</label>
+        </div>
+        <input type="text" data-usermodule-form-registry="username_b" name="username_b" class="u--hide-container">
+        <input data-usermodule-form-registry="account_type" type="hidden" name="account_type" value="">
+        <input type="submit" class="main-login-container__section__form-container__registry-form__mdl-button  mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--form-session" value="{% trans 'complete registry' %}">
+      </form>
+    </div>
+  </section>
+  <section data-usermodule-section="login" class="main-login-container__section  js-main-login-container__section  main-login-container__section--solid-container">
+    <form class="main-login-container__section__login-form" data-usermodule-login="form" action="{% url 'usermodule:get_log_in' %}" method="post">
+      {% csrf_token %}
+      <div class="main-login-container__section__login-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+        <input type="text" class="mdl-textfield__input  mdl-textfield__input--bright" name="username">
+        <label class="mdl-textfield__label  mdl-textfield__label--login" for="username">{% trans 'username' %}</label>
+      </div>
+      <div class="main-login-container__section__login-form__mdl-textfield  mdl-textfield  mdl-js-textfield">
+        <input type="password" class="mdl-textfield__input  mdl-textfield__input--bright" name="password">
+        <label class="mdl-textfield__label  mdl-textfield__label--login" for="password">{% trans 'password' %}</label>
+      </div>
+      <input type="submit" class="main-login-container__section__login-form__mdl-button  mdl-button  mdl-js-button  mdl-button--raised  mdl-js-ripple-effect  mdl-button--form-session" value="{% trans 'log in' %}">
+    </form>
+  </section>
+</main>
     {% if login_error_message %}
     <div class="login-error">
         <h4 class="login-error__title">{{ login_error_message }}</h4>
