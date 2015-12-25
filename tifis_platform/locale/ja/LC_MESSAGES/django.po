@@ -8,130 +8,130 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-23 03:02-0600\n"
+"POT-Creation-Date: 2015-12-24 18:45-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: groupmodule/templates/groupmodule/testview.html:4
+#: .\groupmodule\templates\groupmodule\testview.html:4
 msgid "group list"
-msgstr ""
+msgstr "グループ一覧"
 
-#: tifis_platform/settings.py:111
+#: .\tifis_platform\settings.py:111
 msgid "English"
 msgstr "英語"
 
-#: tifis_platform/settings.py:112
+#: .\tifis_platform\settings.py:112
 msgid "Spanish"
 msgstr "スペイン語"
 
-#: tifis_platform/settings.py:113
+#: .\tifis_platform\settings.py:113
 msgid "Japanese"
 msgstr "日本語"
 
-#: usermodule/templates/base_header_footer.html:10
+#: .\usermodule\templates\base_header_footer.html:10
 msgid "Tifis Project"
 msgstr "チフィス　プロジェクト"
 
-#: usermodule/templates/base_header_footer.html:15
+#: .\usermodule\templates\base_header_footer.html:15
 msgid "languages"
-msgstr ""
+msgstr "言語"
 
-#: usermodule/templates/base_header_footer.html:41
+#: .\usermodule\templates\base_header_footer.html:41
 msgid "Links"
 msgstr "リンク"
 
-#: usermodule/templates/base_header_footer.html:44
+#: .\usermodule\templates\base_header_footer.html:44
 msgid "About this app"
 msgstr "アプリについて"
 
-#: usermodule/templates/base_header_footer.html:45
+#: .\usermodule\templates\base_header_footer.html:45
 msgid "Privacy terms"
 msgstr "利用規約プライバシー"
 
-#: usermodule/templates/base_header_footer.html:46
+#: .\usermodule\templates\base_header_footer.html:46
 msgid "User manual"
 msgstr "ユーザーマニュアル"
 
-#: usermodule/templates/usermodule/index.html:5
-#: usermodule/templates/usermodule/index.html:73
+#: .\usermodule\templates\usermodule\index.html:5
+#: .\usermodule\templates\usermodule\index.html:73
 msgid "log in"
-msgstr ""
+msgstr "ログイン"
 
-#: usermodule/templates/usermodule/index.html:11
+#: .\usermodule\templates\usermodule\index.html:11
 msgid "professor"
-msgstr ""
+msgstr "教師"
 
-#: usermodule/templates/usermodule/index.html:14
+#: .\usermodule\templates\usermodule\index.html:14
 msgid "student"
-msgstr ""
+msgstr "学生"
 
-#: usermodule/templates/usermodule/index.html:19
+#: .\usermodule\templates\usermodule\index.html:19
 msgid "create an account"
-msgstr ""
+msgstr "アカウントを作成します"
 
-#: usermodule/templates/usermodule/index.html:22
+#: .\usermodule\templates\usermodule\index.html:22
 msgid "something@mail.com"
-msgstr ""
+msgstr "something@mail.com"
 
-#: usermodule/templates/usermodule/index.html:26
+#: .\usermodule\templates\usermodule\index.html:26
 msgid "repeat@mail.com"
-msgstr ""
+msgstr "repeat@mail.com"
 
-#: usermodule/templates/usermodule/index.html:30
-#: usermodule/templates/usermodule/index.html:67
+#: .\usermodule\templates\usermodule\index.html:30
+#: .\usermodule\templates\usermodule\index.html:67
 msgid "username"
-msgstr ""
+msgstr "ユーザー名"
 
-#: usermodule/templates/usermodule/index.html:34
+#: .\usermodule\templates\usermodule\index.html:34
 msgid "enrollment"
-msgstr ""
+msgstr "登録"
 
-#: usermodule/templates/usermodule/index.html:38
-#: usermodule/templates/usermodule/index.html:71
+#: .\usermodule\templates\usermodule\index.html:38
+#: .\usermodule\templates\usermodule\index.html:71
 msgid "password"
-msgstr ""
+msgstr "パスワード"
 
-#: usermodule/templates/usermodule/index.html:42
+#: .\usermodule\templates\usermodule\index.html:42
 msgid "repeat password"
-msgstr ""
+msgstr "パスワードを繰り返してください。"
 
-#: usermodule/templates/usermodule/index.html:46
+#: .\usermodule\templates\usermodule\index.html:46
 msgid "name"
-msgstr ""
+msgstr "名前"
 
-#: usermodule/templates/usermodule/index.html:50
+#: .\usermodule\templates\usermodule\index.html:50
 msgid "father last name"
-msgstr ""
+msgstr "父方の姓"
 
-#: usermodule/templates/usermodule/index.html:54
+#: .\usermodule\templates\usermodule\index.html:54
 msgid "mother last name"
-msgstr ""
+msgstr "母方の姓"
 
-#: usermodule/templates/usermodule/index.html:58
+#: .\usermodule\templates\usermodule\index.html:58
 msgid "complete registry"
-msgstr ""
+msgstr "登録完了"
 
-#: usermodule/views.py:61
+#: .\usermodule\views.py:61
 msgid "This username already exist."
-msgstr ""
+msgstr "このユーザー名すでに存在。"
 
-#: usermodule/views.py:67
+#: .\usermodule\views.py:67
 msgid "The registration is complete. Now you can login."
-msgstr ""
+msgstr "登録が完了しました。ログインすることができます。"
 
-#: usermodule/views.py:125
+#: .\usermodule\views.py:125
 msgid "The username seems to be inactive."
-msgstr ""
+msgstr "このユーザーは非アクティブです。"
 
-#: usermodule/views.py:127
+#: .\usermodule\views.py:127
 msgid "Something go wrong, try again."
-msgstr ""
+msgstr "何かが間違っています。もう一度お試しください。"
 
 #~ msgid "Welcome"
 #~ msgstr "ようこそ"

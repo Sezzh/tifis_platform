@@ -19,7 +19,7 @@ var Cookies = require('js-cookie');
 
 function GroupModule() {
 
-  var $btnProfessor = document.querySelector('[data-btn="professor"]');
+  var $btnProfessor = $('[data-btn="professor"]');
   $btnProfessor.on('click', function (event) {
     console.log('trigger event from GroupModule');
     console.log(event);
@@ -159,6 +159,9 @@ function UserModule() {
     //getting the phrases
     if (!sessionStorage.getItem('phrase')) {
       getPhrases().then(function (data) {
+        if (typeof data === 'string') {
+          data = JSON.parse(data);
+        }
         sessionStorage.setItem('professor', JSON.stringify(data.professor));
         sessionStorage.setItem('student', JSON.stringify(data.student));
         sessionStorage.setItem('phrase', JSON.stringify({ callmade: true }));
