@@ -18,16 +18,8 @@ from django.utils.translation import ugettext_lazy as _ #must be lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-#sensitive data
-CFG = yamjam()['tifis']
-DBCFG = yamjam()['tifis']['database']
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
-SECRET_KEY = CFG['django_secret_key']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -83,22 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tifis_platform.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': DBCFG['engine'],
-        'NAME': DBCFG['name'],
-        'USER': DBCFG['user'],
-        'PASSWORD': DBCFG['password'],
-        'HOST': DBCFG['host'],
-        'PORT': DBCFG['port'],
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

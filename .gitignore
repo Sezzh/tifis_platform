@@ -4,5 +4,7 @@ original_key.txt
 python_dependencies.txt
 *.pyc
 *.mo
+*.py~
 /tifis_platform/general/front/css/styles.css
 /tifis_platform/general/front/js/app.js
+/tifis_platform/static
