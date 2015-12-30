@@ -8,8 +8,10 @@ print "running production"
 CFG = yamjam()['tifis_prod']
 DBCFG = yamjam()['tifis_prod']['database']
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = CFG['django_secret_key']
 
 ADMINS = (
@@ -17,23 +19,26 @@ ADMINS = (
     ('Administrator', 'sezzhltd@gmail.com')
 )
 
+MANAGERS = ADMINS
+
 # SECURITY session stuff
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True
+# These three params is for HTTPS configurations
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+# This value is for prevent ajax calls with client-side javascript
+CSRF_COOKIE_HTTPONLY = False
+
+
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
 
-
-
-MANAGERS = ADMINS
-
-DEBUG = False
-
+# A list of strings representing the host/domain names that this Django
+# site can serve.
 ALLOWED_HOSTS = [
     '.tifis.dynalias.com'
+    '192.168.1.84'
 ]
 
 # Database

@@ -8,6 +8,9 @@ print "running development"
 CFG = yamjam()['tifis']
 DBCFG = yamjam()['tifis']['database']
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = CFG['django_secret_key']
@@ -19,10 +22,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DEBUG = True
-
 ALLOWED_HOSTS = [
-    '.tifis.dynalias.com'
+    '.devtifis.dynalias.com'
 ]
 
 # Database
