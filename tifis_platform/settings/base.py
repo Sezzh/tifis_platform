@@ -59,7 +59,8 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.template.context_processors.i18n', #Internationalization v
+                'django.template.context_processors.i18n', # Language support
+                'django.template.context_processors.media', # Media support
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -72,7 +73,7 @@ WSGI_APPLICATION = 'tifis_platform.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'en-us'
 
 # translation Options
 
@@ -81,19 +82,12 @@ LANGUAGES = (
     ('es', _('Spanish')),
     ('ja', _('Japanese')),
 )
-
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
 # Locale path for translations
-
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
@@ -103,16 +97,18 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-
 STATICFILES_DIRS = (
     ("general", "general/front"),
 )
 
+# Media files (user's assets)
+MEDIA_URL = '/media/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+
+
+# login configurations
 LOGIN_REDIRECT_URL = 'usermodule:log_in'
-
 LOGIN_URL = 'usermodule:log_in'
-
 LOGOUT_URL = 'usermodule:log_out'
