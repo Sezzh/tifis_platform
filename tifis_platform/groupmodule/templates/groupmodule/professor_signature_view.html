@@ -1,0 +1,18 @@
+{% extends "navigation_list.html" %}
+{% load i18n %}
+
+{% block title %}{{ current_period_name }}{% endblock  %}
+{% block layout_title %}{{ current_period_name }}{% endblock layout_title %}
+
+{% block section_list %}
+<section class="signature-section" data-groupmodule-section="signature">
+  <div class="signature-section__load-container" data-groupmodule-section="spinner_container">
+    <div class="mdl-spinner  mdl-js-spinner  is-active" data-groupmodule-section="spinner"></div>
+  </div>
+  <ul class="signature-section__list" data-groupmodule-section="signature_list">
+  </ul>
+</section>
+<button class="mdl-button  mdl-js-button  mdl-button--fab  mdl-js-ripple-effect  signature-section__new-button" data-groupmodule-btn="add_signature">
+  <i class="material-icons">add</i>
+</button>
+{% endblock section_list %}

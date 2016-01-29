@@ -1,0 +1,19 @@
+{% extends "groupmodule/professor_signature_view.html" %}
+{% load i18n %}
+
+{% block form_new %}
+<form class="signature-new-form" action="{% url 'groupmodule:new_signature' %}" method="post">
+    {% csrf_token %}
+    <h3 class="signature-new-form__title">{% trans 'new signature' %}</h3>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" name="signature_name">
+      <label class="mdl-textfield__label" for="signature_name">{% trans 'signature name' %}</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" name="signature_career">
+      <label class="mdl-textfield__label" for="group_career">{% trans 'signature career' %}</label>
+    </div>
+    <input type="hidden" name="period_pk" value="{{ current_period_pk }}">
+    <input type="submit" data-groupmodule-value="{% trans 'create signature' %}">
+</form>
+{% endblock form_new %}

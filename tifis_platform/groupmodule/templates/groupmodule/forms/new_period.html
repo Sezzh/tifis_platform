@@ -1,0 +1,40 @@
+{% extends "groupmodule/professor_period_view.html" %}
+{% load i18n %}
+
+{% block form_new %}
+<form class="period-new-form" data-groupmodule-form="new_period" action="{% url 'groupmodule:new_period' %}" method="post">
+  {% csrf_token %}
+  <h3 class="period-new-form__title">{% trans 'new period' %}</h3>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="period_name">
+    <label class="mdl-textfield__label" for="period_name">{% trans 'period name' %}</label>
+  </div>
+  <h4>{% trans 'date start' %}</h4>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="start_month">
+    <label class="mdl-textfield__label" for="start_month">{% trans 'month' %}</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="start_day">
+    <label class="mdl-textfield__label" for="start_day">{% trans 'day' %}</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="start_year">
+    <label class="mdl-textfield__label" for="start_year">{% trans 'year' %}</label>
+  </div>
+  <h4>{% trans 'date end' %}</h4>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="end_month">
+    <label class="mdl-textfield__label" for="end_month">{% trans 'month' %}</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="end_day">
+    <label class="mdl-textfield__label" for="end_day">{% trans 'day' %}</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" name="end_year">
+    <label class="mdl-textfield__label" for="end_year">{% trans 'year' %}</label>
+  </div>
+  <input type="submit" data-groupmodule-value="{% trans 'create period' %}">
+</form>
+{% endblock form_new %}

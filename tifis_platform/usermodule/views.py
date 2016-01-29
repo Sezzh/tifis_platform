@@ -1,9 +1,4 @@
 # -*- encoding: utf-8 -*-
-
-# debug stuff
-import ipdb
-# ipdb.set_trace() if you want to debug something
-
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
@@ -83,7 +78,6 @@ def get_log_in(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
-    #pdb.set_trace()
     if user is not None:
         if user.is_active:
             login(request, user)
@@ -92,18 +86,19 @@ def get_log_in(request):
                 #sending the id for get in the next module every period he has.
                 return HttpResponseRedirect(
                     reverse(
-                        'groupmodule:professor_index',
-                        args=[user.professor.user_id]
+                        'groupmodule:professor_periods_index', args=[user.username]
                     )
                 )
             elif hasattr(user, 'student'):
                 return HttpResponseRedirect(
-                    reverse('groupmodule:student_index')
+                    reverse('groupmodule:student_index', args=[user.username])
                 )
             else:
                 login_error_message = 2 # something go wrong
                 return HttpResponseRedirect(
-                    reverse('usermodule:bad_log_in', args=[login_error_message])
+                    reverse(
+                        'usermodule:bad_log_in', args=[login_error_message]
+                    )
                 )
         else:
             login_error_message = 1 #the user is inactive

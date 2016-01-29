@@ -1,0 +1,15 @@
+{% extends "groupmodule/professor_group_view.html" %}
+{% load i18n %}
+
+{% block form_new %}
+<form class="group-new-form" action="{% url 'groupmodule:new_group' %}" method="post">
+    {% csrf_token %}
+    <h3 class="group-new-form__title">{% trans 'new group' %}</h3>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" name="group_name">
+      <label class="mdl-textfield__label" for="group_name">{% trans 'group name' %}</label>
+    </div>
+    <input type="hidden" name="signature_pk" value="{{ current_signature_pk }}">
+    <input type="submit" data-groupmodule-value="{% trans 'create group' %}">
+</form>
+{% endblock form_new %}

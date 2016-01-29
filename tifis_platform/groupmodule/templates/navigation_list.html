@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Welcome professor' %}{% endblock  %}
+
+{% block content %}
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">{% block layout_title %}{% trans 'Title' %}{% endblock layout_title %}</span>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <div class="" data-usermodule="user_nav">
+      <img src="" alt="" />
+      <span class="mdl-layout-title">bebi</span>
+    </div>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="#">{% trans 'periods' %}</a>
+      <a class="mdl-navigation__link" href="#">{% trans 'signatures' %}</a>
+      <a class="mdl-navigation__link" href="#">{% trans 'groups' %}</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content  u--bright-backgroud">
+    <div class="page-content">
+      {% block section_list %}{% endblock section_list %}
+      {% block form_new %}{% endblock form_new %}
+    </div>
+  </main>
+</div>
+{% endblock content %}

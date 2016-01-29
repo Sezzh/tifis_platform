@@ -1,39 +1,45 @@
-
-
 //student styles
 .u--student-color
-    background-color studentPrincipalColor
+  background-color studentPrincipalColor
 
 .u--student-background
-    background-color desaturate(darken(studentPrincipalColor, 40%), 50%)
+  background-color desaturate(darken(studentPrincipalColor, 40%), 50%)
 
 //professor styles
 .u--professor-color
-    background-color professorPrincipalColor
+  background-color professorPrincipalColor
 
 .u--professor-background
-    background-color desaturate(darken(professorPrincipalColor, 60%), 50%)
+  background-color desaturate(darken(professorPrincipalColor, 60%), 50%)
 
 //general styles
 .u--max-width
-    width 100%
+  width 100%
 
 .u--min-width
-    width 0
+  width 0
 
+.u--height-lost
+  height 0
 .u--heightChange
-    max-height 1000px
+  max-height 1000px
+
+.u--margin-lost
+  margin 0
 
 .u--show-container
-    display block
+  display block
 
 .u--hide-container
-    display none
+  display none
 
 .u--hide-background
+  background-image none
+  &:nth-child(odd)
     background-image none
-    &:nth-child(odd)
-        background-image none
 
 .u--show-language-menu
   transform translateX(0%)
+
+.u--bright-backgroud
+  background-color appBackgroundGrey

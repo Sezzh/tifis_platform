@@ -1,0 +1,18 @@
+{% extends "navigation_list.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Period list' %}{% endblock  %}
+{% block layout_title %}{% trans 'Periods' %}{% endblock layout_title %}
+
+{% block section_list %}
+<section class="period-section" data-groupmodule-section="period">
+  <div class="period-section__load-container" data-groupmodule-section="spinner_container">
+    <div class="mdl-spinner  mdl-js-spinner  is-active" data-groupmodule-section="spinner"></div>
+  </div>
+  <ul class="period-section__list" data-groupmodule-section="period_list">
+  </ul>
+</section>
+<button class="mdl-button  mdl-js-button  mdl-button--fab  mdl-js-ripple-effect  period-section__new-button" data-groupmodule-btn="add_period">
+  <i class="material-icons">add</i>
+</button>
+{% endblock section_list %}

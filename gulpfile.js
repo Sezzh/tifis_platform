@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var babelify = require('babelify');
+var jadeify = require('jadeify');
 var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
@@ -20,7 +21,7 @@ var livereload = require('gulp-livereload');
 
 var opts = {
     entries: './lib/babel/app.js', //main file
-    transform: [babelify]
+    transform: [babelify, jadeify]
 };
 
 opts = assign({}, watchify.args, opts);
