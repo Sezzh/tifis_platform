@@ -71,42 +71,57 @@ function GroupModule() {
   if ($('[data-groupmodule-section="period"]').length) {
     userApi.getUserData().then(function (response) {
       periodApi = new _utilPeriodApiJs2['default'](userApi.username);
-      periodApi.findPeriods().then(function (data) {
-        spinnerLoader.handlerSpinner();
-        renderPeriods(data);
-      });
+      return periodApi.findPeriods();
+    }).then(function (data) {
+      spinnerLoader.handlerSpinner();
+      renderPeriods(data);
+    })['catch'](function (err) {
+      console.log(err);
     });
   }
 
   if ($('[data-groupmodule-section="signature"]').length) {
     userApi.getUserData().then(function (response) {
       periodApi = new _utilPeriodApiJs2['default'](userApi.username);
-      periodApi.getCurrentPeriod().then(function (currentPeriod) {
-        signatureApi = new _utilSignatureApiJs2['default'](userApi.username, currentPeriod.fields.name_url);
-        signatureApi.findSignatures().then(function (data) {
-          spinnerLoader.handlerSpinner();
-          renderSignatures(data);
-        });
-      });
+      return periodApi.getCurrentPeriod();
+    }).then(function (data) {
+      var currentPeriod = data;
+      signatureApi = new _utilSignatureApiJs2['default'](userApi.username, currentPeriod.fields.name_url);
+      return signatureApi.findSignatures();
+    }).then(function (data) {
+      spinnerLoader.handlerSpinner();
+      renderSignatures(data);
+    })['catch'](function (err) {
+      console.log(err);
     });
   }
 
   if ($('[data-groupmodule-section="group"]').length) {
-    var currentSignature = JSON.parse(sessionStorage['currentSignature']);
-    var currentPeriod = JSON.parse(sessionStorage['currentPeriod']);
     userApi.getUserData().then(function (response) {
+      periodApi = new _utilPeriodApiJs2['default'](userApi.username);
+      return periodApi.getCurrentPeriod();
+    }).then(function (data) {
+      var currentPeriod = data;
+      signatureApi = new _utilSignatureApiJs2['default'](userApi.username, currentPeriod.fields.name_url);
+      return Promise.all([Promise.resolve(currentPeriod), signatureApi.getCurrentSignature()]);
+    }).then(function (data) {
+      var currentPeriod = data[0];
+      var currentSignature = data[1];
       groupApi = new _utilGroupApiJs2['default'](userApi.username, currentPeriod.fields.name_url, currentSignature.fields.name_url);
-      groupApi.findGroups().then(function (data) {
-        spinnerLoader.handlerSpinner();
-        renderGroups(data);
-      });
+      return groupApi.findGroups();
+    }).then(function (data) {
+      spinnerLoader.handlerSpinner();
+      renderGroups(data);
+    })['catch'](function (err) {
+      console.log(err);
     });
   }
 
   if ($('[data-groupmodule-btn="add_period"]').length) {
     var $btnAddPeriod = $('[data-groupmodule-btn="add_period"]');
+    var element = '[data-groupmodule-form="new_period"]';
     $btnAddPeriod.on('click', function (event) {
-      openForm();
+      openForm(element);
     });
   }
 
@@ -135,17 +150,19 @@ function GroupModule() {
     });
   });
 
-  function openForm() {
-    var $form = $('[data-groupmodule-form="new_period"]');
+  function openForm(element) {
+    var $form = $(element);
     $form.toggleClass('period-new-form--visible');
   }
 
-  function closeForm() {
-    var $form = $('[data-groupmodule-form="new_period"]');
+  function closeForm(element) {
+    var $form = $(element);
     $form.toggleClass('period-new-form--visible');
   }
 
   function renderSignatures(data) {
+    var signatures = data.signatures;
+    var signaturesStatusError = data.error;
     var $structureItem;
     var itemList = [];
     var parent = '[data-groupmodule-section="signature_list"]';
@@ -159,14 +176,14 @@ function GroupModule() {
     var selectedSignatureName;
     var target;
     var currentPeriod = JSON.parse(sessionStorage['currentPeriod']);
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < signatures.length; i++) {
       $structureItem = $($.parseHTML(signatureItemTemplate()));
       for (var j = 0; j < $structureItem.length; j++) {
         itemElement = $structureItem[j];
         for (var k = 0; k < itemElement.children.length; k++) {
           linkElement = itemElement.children[k];
-          linkElement.href = baseUrl + '/' + userApi.username + '/' + (currentPeriod.fields.name_url + '/' + data[i].fields.name_url);
-          linkElement.setAttribute(dataAtt, data[i].fields.name_url);
+          linkElement.href = baseUrl + '/' + userApi.username + '/' + (currentPeriod.fields.name_url + '/') + ('' + signatures[i].fields.name_url);
+          linkElement.setAttribute(dataAtt, signatures[i].fields.name_url);
           $(linkElement).on('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
@@ -184,9 +201,9 @@ function GroupModule() {
             spanElement = linkElement.children[l];
             for (var m = 0; m < spanElement.attributes.length; m++) {
               if (spanElement.attributes[m].value === dataSpanName) {
-                spanElement.innerHTML = data[i].fields.name;
+                spanElement.innerHTML = signatures[i].fields.name;
               } else if (spanElement.attributes[m].value === dataSpanCareer) {
-                spanElement.innerHTML = data[i].fields.career;
+                spanElement.innerHTML = signatures[i].fields.career;
               }
             }
           }
@@ -198,6 +215,8 @@ function GroupModule() {
   }
 
   function renderGroups(data) {
+    var groups = data.groups;
+    var groupsStatusError = data.error;
     var $structureItem;
     var itemList = [];
     var parent = '[data-groupmodule-section="group_list"]';
@@ -209,15 +228,15 @@ function GroupModule() {
     var linkElement;
     var currentPeriod = JSON.parse(sessionStorage['currentPeriod']);
     var currentSignature = JSON.parse(sessionStorage['currentSignature']);
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < groups.length; i++) {
       $structureItem = $($.parseHTML(groupItemTemplate()));
       for (var k = 0; k < $structureItem.length; k++) {
         itemElement = $structureItem[k];
         for (var j = 0; j < itemElement.children.length; j++) {
           linkElement = itemElement.children[j];
-          linkElement.href = baseUrl + '/' + (userApi.username + '/') + (currentPeriod.fields.name_url + '/') + (currentSignature.fields.name_url + '/') + ('' + data[i].fields.name_url);
-          linkElement.setAttribute(dataAtt, data[i].fields.name_url);
-          linkElement.innerHTML = data[i].fields.name;
+          linkElement.href = baseUrl + '/' + (userApi.username + '/') + (currentPeriod.fields.name_url + '/') + (currentSignature.fields.name_url + '/') + ('' + groups[i].fields.name_url);
+          linkElement.setAttribute(dataAtt, groups[i].fields.name_url);
+          linkElement.innerHTML = groups[i].fields.name;
           $(linkElement).on('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
@@ -239,20 +258,22 @@ function GroupModule() {
   }
 
   function renderPeriods(data) {
-    var $structureItem;
-    var itemList = [];
+    var periods = data.periods;
+    var periodsStatusError = data.error;
     var parent = '[data-groupmodule-section="period_list"]';
     var dataAtt = 'data-groupmodule-name-url';
+    var $structureItem;
+    var itemList = [];
     var href;
     var target;
     var selectedPeriodName;
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < periods.length; i++) {
       $structureItem = $($.parseHTML(periodItemTemplate()));
       $structureItem.each(function (index, element) {
         for (var j = 0; j < element.children.length; j++) {
-          element.children[j].setAttribute('href', baseUrl + '/' + userApi.username + '/' + data[i].fields.name_url);
-          element.children[j].setAttribute(dataAtt, data[i].fields.name_url);
-          element.children[j].innerHTML = data[i].fields.name;
+          element.children[j].setAttribute('href', baseUrl + '/' + userApi.username + '/' + periods[i].fields.name_url);
+          element.children[j].setAttribute(dataAtt, periods[i].fields.name_url);
+          element.children[j].innerHTML = periods[i].fields.name;
           $(element.children[j]).on('click', function (event) {
             event.preventDefault();
             event.stopPropagation();
@@ -992,7 +1013,7 @@ var PeriodApi = (function () {
         sessionStorage.removeItem('periods');
       }
       return Promise.resolve($.get(this.periodsUrl)).then(function (data) {
-        sessionStorage.setItem('periods', JSON.stringify(data));
+        sessionStorage.setItem('periods', JSON.stringify(data.periods));
         return Promise.resolve(data);
       });
     }
@@ -1023,20 +1044,22 @@ var PeriodApi = (function () {
 
       var pathApi = new _pathJs2['default']();
       var currentPeriod;
+      var period;
       if (sessionStorage['currentPeriod']) {
         currentPeriod = JSON.parse(sessionStorage['currentPeriod']);
         if (pathApi.period === currentPeriod.fields.name_url) {
-          return Promise.resolve(currentPeriod);
+          period = Promise.resolve(currentPeriod);
         } else {
-          return this.findPeriods().then(function (data) {
-            return _this.chooseCurrentPeriod(data, pathApi.period);
+          period = this.findPeriods().then(function (data) {
+            return _this.chooseCurrentPeriod(data.periods, pathApi.period);
           });
         }
       } else {
-        return this.findPeriods().then(function (data) {
-          return _this.chooseCurrentPeriod(data, pathApi.period);
+        period = this.findPeriods().then(function (data) {
+          return _this.chooseCurrentPeriod(data.periods, pathApi.period);
         });
       }
+      return period;
     }
   }, {
     key: 'saveCurrentPeriod',
@@ -1053,9 +1076,9 @@ var PeriodApi = (function () {
       for (var i = 0; i < data.length; i++) {
         if (data[i].fields.name_url === period) {
           currentPeriod = data[i];
-          this.saveCurrentPeriod(currentPeriod);
         }
       }
+      this.saveCurrentPeriod(currentPeriod);
       return Promise.resolve(currentPeriod);
     }
   }, {
@@ -1121,18 +1144,59 @@ var SignatureApi = (function () {
     key: 'selectedSignature',
     value: function selectedSignature(signatureName) {
       var signatures = JSON.parse(sessionStorage['signatures']);
-      if (sessionStorage['currentSignature']) {
-        sessionStorage.removeItem('currentSignature');
-      }
       for (var i = 0; i < signatures.length; i++) {
         if (signatures[i].fields.name_url === signatureName) {
-          sessionStorage.setItem('currentSignature', JSON.stringify(signatures[i]));
+          this.saveCurrentSignature(signatures[i]);
         }
       }
     }
   }, {
     key: 'newSignature',
     value: function newSignature() {}
+  }, {
+    key: 'getCurrentSignature',
+    value: function getCurrentSignature() {
+      var _this = this;
+
+      var currentSignature;
+      var signature;
+      var path = new _pathJs2['default']();
+      if (sessionStorage['currentSignature']) {
+        currentSignature = JSON.parse(sessionStorage['currentSignature']);
+        if (path.signature === currentSignature.fields.name_url) {
+          signature = Promise.resolve(currentSignature);
+        } else {
+          signature = this.findSignatures().then(function (data) {
+            return _this.chooseCurrentSignature(data.signatures, path.signature);
+          });
+        }
+      } else {
+        signature = this.findSignatures().then(function (data) {
+          return _this.chooseCurrentSignature(data.signatures, path.signature);
+        });
+      }
+      return signature;
+    }
+  }, {
+    key: 'chooseCurrentSignature',
+    value: function chooseCurrentSignature(data, signature) {
+      var currentSignature;
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].fields.name_url === signature) {
+          currentSignature = data[i];
+        }
+      }
+      this.saveCurrentSignature(currentSignature);
+      return Promise.resolve(currentSignature);
+    }
+  }, {
+    key: 'saveCurrentSignature',
+    value: function saveCurrentSignature(signature) {
+      if (sessionStorage['currentSignature']) {
+        sessionStorage.removeItem('currentSignature');
+      }
+      sessionStorage.setItem('currentSignature', JSON.stringify(signature));
+    }
   }, {
     key: 'signaturesUrl',
     get: function get() {
