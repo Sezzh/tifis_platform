@@ -1,0 +1,21 @@
+{% extends "navigation_professor_detail_group.html" %}
+{% load i18n %}
+{% block title %}{{current_group_name}}{% endblock title %}
+
+{% block section_group %}
+<section class="section-group-code">
+  <h2 class="section-group-code__title">{% trans 'This is your Group Code:' %}</h2>
+  <h3 class="section-group-code__code">{{current_group_group_code}}</h3>
+</section>
+{% if current_group_no_partials %}
+  <section class="section-group-warning-container">
+    <span class="section-group-warning-container__message">
+      {{current_group_no_partials}}
+    </span>
+    <a class="section-group-warning-container__button" href="{% url 'groupmodule:professor_group_configuration' current_username current_period_name current_signature_name current_group_name %}">{% trans "configuration" %}</a>
+  </section>
+{% endif %}
+  <section class="section-group-news">
+    <h2 class="section-group-news__title">{% trans 'Latest news group' %}</h2>
+  </section>
+{% endblock section_group %}

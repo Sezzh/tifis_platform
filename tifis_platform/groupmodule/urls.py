@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
+from django.utils.translation import ugettext_lazy as _
 from . import views
+
 
 urlpatterns = [
     url(
@@ -37,24 +39,36 @@ urlpatterns = [
         name='get_groups'
     ),
     url(
-        r'^get-current-user$',
+        r'^get-current-user/$',
         views.get_current_user,
         name='get_current_user'
     ),
     url(
-        r'^new-period$',
+        r'^new-period/$',
         views.new_period,
         name='new_period'
     ),
     url(
-        r'^new-signature$',
+        r'^new-signature/$',
         views.new_signature,
         name='new_signature'
     ),
     url(
-        r'^new-group$',
+        r'^new-group/$',
         views.new_group,
         name='new_group'
+    ),
+    url(
+        r'^(?P<professor_username>[0-9A-Za-z]+)/' +
+        r'(?P<period_name>[^/]+)/(?P<signature_name>[^/]+)/' +
+        r'(?P<group_name>[^/]+)/$',
+        views.professor_group_detail_index,
+        name='professor_group_detail_index'
+    ),
+    url(
+        _(r'^(?P<professor_username>[0-9A-Za-z]+)/(?P<period_name>[^/]+)/(?P<signature_name>[^/]+)/(?P<group_name>[^/]+)/configuration/$'),
+        views.professor_group_configuration,
+        name='professor_group_configuration'
     ),
     url(r'get-ajax-response$', views.ajax_test, name='ajax_test')
     # url(r'^group$', views.student_index, name='student_index'),

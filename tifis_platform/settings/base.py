@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from YamJam import yamjam
-#import ugettext_lazy for Internationalization using an alias
-from django.utils.translation import ugettext_lazy as _ #must be lazy
+# import ugettext_lazy for Internationalization using an alias
+from django.utils.translation import ugettext_lazy as _  # must be lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,7 +36,7 @@ INSTALLED_APPS = (
 # we add locale this is for Internationalization
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware', #
+    'django.middleware.locale.LocaleMiddleware',  #
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -59,8 +59,8 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.template.context_processors.i18n', # Language support
-                'django.template.context_processors.media', # Media support
+                'django.template.context_processors.i18n',  # Language support
+                'django.template.context_processors.media',  # Media support
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],

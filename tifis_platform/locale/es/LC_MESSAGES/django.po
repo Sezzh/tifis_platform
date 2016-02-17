@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-24 18:45-0600\n"
+"POT-Creation-Date: 2016-02-17 07:20-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,253 @@ msgstr ""
 "Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\groupmodule\templates\groupmodule\testview.html:4
-msgid "group list"
+#: .\groupmodule\templates\groupmodule\forms\new_group.html:7
+msgid "new group"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_group.html:10
+msgid "group name"
 msgstr "lista de Grupo"
 
-#: .\tifis_platform\settings.py:111
+#: .\groupmodule\templates\groupmodule\forms\new_group.html:13
+msgid "create group"
+msgstr "crear una cuenta"
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:7
+msgid "new period"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:10
+msgid "period name"
+msgstr "nombre de usuario"
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:12
+msgid "date start"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:15
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:28
+msgid "month"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:19
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:32
+msgid "day"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:23
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:36
+msgid "year"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:25
+msgid "date end"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_period.html:38
+msgid "create period"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_signature.html:7
+msgid "new signature"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_signature.html:10
+msgid "signature name"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_signature.html:14
+msgid "signature career"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\forms\new_signature.html:17
+msgid "create signature"
+msgstr "crear una cuenta"
+
+#: .\groupmodule\templates\groupmodule\professor_detail_group_view.html:7
+msgid "This is your Group Code:"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\professor_detail_group_view.html:15
+msgid "configuration"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\professor_detail_group_view.html:19
+msgid "Latest news group"
+msgstr ""
+
+#: .\groupmodule\templates\groupmodule\professor_period_view.html:4
+msgid "Period list"
+msgstr "lista de Grupo"
+
+#: .\groupmodule\templates\groupmodule\professor_period_view.html:5
+msgid "Periods"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_list.html:4
+#: .\groupmodule\templates\navigation_professor_detail_group.html:4
+msgid "Welcome professor"
+msgstr "profesor"
+
+#: .\groupmodule\templates\navigation_list.html:10
+msgid "Title"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_list.html:19
+msgid "periods"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_list.html:20
+msgid "signatures"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_list.html:21
+msgid "groups"
+msgstr "lista de Grupo"
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:21
+msgid "group configuration"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:22
+msgid "authorize students"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:23
+msgid "news"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:24
+msgid "assigments"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:25
+msgid "projects"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:26
+msgid "reviews"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:27
+msgid "practices"
+msgstr ""
+
+#: .\groupmodule\templates\navigation_professor_detail_group.html:28
+msgid "participation"
+msgstr ""
+
+#: .\groupmodule\urls.py:69
+msgid ""
+"^(?P<professor_username>[0-9A-Za-z]+)/(?P<period_name>[^/]+)/(?"
+"P<signature_name>[^/]+)/(?P<group_name>[^/]+)/configuration/$"
+msgstr ""
+"^(?P<professor_username>[0-9A-Za-z]+)/(?P<period_name>[^/]+)/(?"
+"P<signature_name>[^/]+)/(?P<group_name>[^/]+)/configuración/$"
+
+#: .\groupmodule\views.py:185
+msgid "Now, you have to set an evaluation "
+msgstr ""
+
+#: .\groupmodule\views.py:186
+msgid "type and configure 1 partial at "
+msgstr ""
+
+#: .\groupmodule\views.py:187
+msgid "least in order to invite students."
+msgstr ""
+
+#: .\groupmodule\views.py:234
+msgid "this if now can be translate"
+msgstr ""
+
+#: .\groupmodule\views.py:307
+msgid "The period was successful created."
+msgstr ""
+
+#: .\groupmodule\views.py:308
+msgid "You can't have periods with the same name."
+msgstr ""
+
+#: .\groupmodule\views.py:309
+msgid "You are not authorized to create periods."
+msgstr ""
+
+#: .\groupmodule\views.py:364
+msgid "you already have a signature with that name."
+msgstr ""
+
+#: .\groupmodule\views.py:365
+msgid "signature successful created."
+msgstr ""
+
+#: .\groupmodule\views.py:366 .\groupmodule\views.py:413
+msgid "you can not do this..."
+msgstr ""
+
+#: .\groupmodule\views.py:411
+msgid "you already have a group with that name."
+msgstr ""
+
+#: .\groupmodule\views.py:412
+msgid "group successful created."
+msgstr ""
+
+#: .\groupmodule\views.py:462
+msgid "You have no periods availables."
+msgstr ""
+
+#: .\groupmodule\views.py:463
+msgid "There are available periods."
+msgstr ""
+
+#: .\groupmodule\views.py:464
+msgid "You are not authorized to request periods."
+msgstr ""
+
+#: .\groupmodule\views.py:522
+msgid "You have no signatures availables."
+msgstr ""
+
+#: .\groupmodule\views.py:523
+msgid "There are available signatures."
+msgstr ""
+
+#: .\groupmodule\views.py:524
+msgid "You are not authorized to request signatures."
+msgstr ""
+
+#: .\groupmodule\views.py:590
+msgid "You have no groups availables."
+msgstr ""
+
+#: .\groupmodule\views.py:591
+msgid "There are available groups."
+msgstr ""
+
+#: .\groupmodule\views.py:593
+msgid "You are not authorized to request groups "
+msgstr ""
+
+#: .\groupmodule\views.py:594
+msgid "in this way."
+msgstr ""
+
+#: .\settings\base.py:81
 msgid "English"
 msgstr "Inglés"
 
-#: .\tifis_platform\settings.py:112
+#: .\settings\base.py:82
 msgid "Spanish"
 msgstr "Español"
 
-#: .\tifis_platform\settings.py:113
+#: .\settings\base.py:83
 msgid "Japanese"
 msgstr "Japonés"
+
+#: .\templates\bases\base.html:9
+msgid "Welcome"
+msgstr "Bienvenido"
 
 #: .\usermodule\templates\base_header_footer.html:10
 msgid "Tifis Project"
@@ -117,30 +349,21 @@ msgstr "apellido materno"
 msgid "complete registry"
 msgstr "completar registro"
 
-#: .\usermodule\views.py:61
+#: .\usermodule\views.py:56
 msgid "This username already exist."
 msgstr "El usuario ya existe."
 
-#: .\usermodule\views.py:67
+#: .\usermodule\views.py:62
 msgid "The registration is complete. Now you can login."
 msgstr "El registro esta completo. Pues iniciar sesión"
 
-#: .\usermodule\views.py:125
+#: .\usermodule\views.py:120
 msgid "The username seems to be inactive."
 msgstr "El nombre de usuario esta inactivo"
 
-#: .\usermodule\views.py:127
+#: .\usermodule\views.py:122
 msgid "Something go wrong, try again."
 msgstr "Algo salio mal, intenta de nuevo."
 
-#~ msgid "Welcome"
-#~ msgstr "Bienvenido"
-
-#~ msgid "Current language: "
-#~ msgstr "Idioma Actual"
-
-#~ msgid "Change"
-#~ msgstr "Cambiar Idioma"
-
-#~ msgid "Hello, World !!!"
-#~ msgstr "¡Hola Mundo!"
+#~ msgid "^configuration/(?P<group_id>[0-9]+)/$"
+#~ msgstr "^configuración/(?P<group_id>[0-9]+)/$"

@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
-    url(r'^i18n/', include('django.conf.urls.i18n')), #perfom translations
+    url(r'^i18n/', include('django.conf.urls.i18n')),  # perfom translations
     url(r'^', include('usermodule.urls', namespace='usermodule')),
-    url(r'^', include('groupmodule.urls', namespace='groupmodule')),
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+urlpatterns += i18n_patterns(
+    url(r'^', include('groupmodule.urls', namespace='groupmodule'))
+)

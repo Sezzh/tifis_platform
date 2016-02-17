@@ -107,8 +107,7 @@ def professor_signatures_index(request, professor_username, period_name):
 
 @login_required
 def professor_groups_index(
-        request, professor_username, period_name,
-        signature_name):
+        request, professor_username, period_name, signature_name):
     """Send the template and context of the selected signature.
 
     Check if the current user is a professor, then with the params send in the
@@ -165,6 +164,78 @@ def professor_groups_index(
             )
     else:
         response = HttpResponseRedirect(reverse('groupmodule:student_index'))
+    return response
+
+
+@login_required
+def professor_group_detail_index(
+        request, professor_username, period_name, signature_name, group_name):
+    """
+    """
+    context = {
+        'current_username': None,
+        'current_period_name': None,
+        'current_signature_name': None,
+        'current_signature_career': None,
+        'current_group_pk': None,
+        'current_group_name': None,
+        'current_group_group_code': None,
+    }
+    phrases = [
+        _('Now, you have to set an evaluation '),
+        _('type and configure 1 partial at '),
+        _('least in order to invite students.')
+    ]
+    status_no_partial = ''.join(phrases)
+    if hasattr(request.user, 'professor'):
+        if request.user.get_username() == professor_username:
+            period_name = period_name.replace('-', ' ')
+            signature_name = signature_name.replace('-', ' ')
+            group_name = group_name.replace('-', ' ')
+            current_user = User.objects.get(
+                username__exact=request.user.get_username()
+            )
+            current_period = get_object_or_404(
+                Period, name__exact=period_name,
+                professor_id__exact=current_user.id
+            )
+            current_signature = get_object_or_404(
+                Signature, name__exact=signature_name,
+                period_id__exact=current_period.id
+            )
+            current_group = get_object_or_404(
+                Group, name__exact=group_name,
+                signature_id__exact=current_signature.id
+            )
+            partials = current_group.partial_set.all()
+            if len(partials) == 0:
+                context['current_group_no_partials'] = status_no_partial
+            context['current_username'] = current_user.get_username()
+            context['current_period_name'] = current_period.name
+            context['current_signature_name'] = current_signature.name
+            context['current_signature_career'] = current_signature.career
+            context['current_group_pk'] = current_group.pk
+            context['current_group_name'] = current_group.name
+            context['current_group_group_code'] = current_group.group_code
+            response = render(
+                request, 'groupmodule/professor_detail_group_view.html',
+                context
+            )
+            # import ipdb; ipdb.set_trace()
+    return response
+
+
+@login_required
+def professor_group_configuration(
+        request, professor_username, period_name, signature_name, group_name):
+    """
+    """
+    context = {
+        'configuration': _('this if now can be translate')
+    }
+    response = render(
+        request, 'groupmodule/professor_group_configuration_view.html', context
+    )
     return response
 
 
@@ -515,10 +586,13 @@ def get_groups(request, professor_username, period_name, signature_name):
         'error': False,
         'groups': None,
     }
+
     status_no_available_groups = _('You have no groups availables.')
     status_available_groups = _('There are available groups.')
-    status_not_authorized = _('You are not authorized to request groups ' +
-                              'in this way.')
+    status_not_authorized = [
+        _('You are not authorized to request groups '),
+        _('in this way.')
+    ]
     if hasattr(request.user, 'professor'):
         if request.user.get_username() == professor_username:
             period_name = period_name.replace('-', ' ')
@@ -554,7 +628,7 @@ def get_groups(request, professor_username, period_name, signature_name):
                 )
             )
     else:
-        data['status'] = status_not_authorized
+        data['status'] = ''.join(status_not_authorized)
         data['error'] = True
         response = JsonResponse(data)
     return response

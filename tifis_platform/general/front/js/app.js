@@ -919,6 +919,7 @@ var PathApi = (function () {
     var pathArray = [];
     this._path = decodeURI(document.location.pathname);
     this._username;
+    this._language;
     this._period;
     this._signature;
     this._group;
@@ -927,12 +928,14 @@ var PathApi = (function () {
     pathArray.shift();
     for (var i = 0; i < pathArray.length; i++) {
       if (i === 0) {
-        this.username = pathArray[i];
+        this.language = pathArray[i];
       } else if (i === 1) {
-        this.period = pathArray[i];
+        this.username = pathArray[i];
       } else if (i === 2) {
-        this.signature = pathArray[i];
+        this.period = pathArray[i];
       } else if (i === 3) {
+        this.signature = pathArray[i];
+      } else if (i === 4) {
         this.group = pathArray[i];
       }
     }
@@ -974,6 +977,14 @@ var PathApi = (function () {
     },
     set: function set(group) {
       this._group = group;
+    }
+  }, {
+    key: 'language',
+    get: function get() {
+      return this._language;
+    },
+    set: function set(language) {
+      this._language = language;
     }
   }]);
 

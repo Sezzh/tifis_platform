@@ -49,7 +49,7 @@ class Group(models.Model):
 
     @property
     def group_code(self):
-        group_pk = str(self.pk)
+        group_pk = unicode(self.pk)
         block_digits = 4
         code = ''
         count = 1
