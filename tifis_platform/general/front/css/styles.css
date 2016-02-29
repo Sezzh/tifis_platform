@@ -13013,7 +13013,7 @@ html {
 }
 
 .header--background {
-  background-image: url("../../../../static/general/assets/background_images/cu.jpg");
+  background-image: url("/static/general/assets/background_images/cu.jpg");
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -13176,7 +13176,7 @@ html {
 
 .main-login-container__section__button-container {
   width: 50%;
-  background-image: url("../../../../static/general/assets/background_images/spring_blur.jpg");
+  background-image: url("/static/general/assets/background_images/spring_blur.jpg");
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -13190,7 +13190,7 @@ html {
 }
 
 .main-login-container__section__button-container:nth-child(odd) {
-  background-image: url("../../../../static/general/assets/background_images/fall_blur.jpg");
+  background-image: url("/static/general/assets/background_images/fall_blur.jpg");
 }
 
 .main-login-container__section__form-container {

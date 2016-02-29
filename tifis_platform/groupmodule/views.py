@@ -11,12 +11,13 @@ from django.contrib.auth.models import Group, User
 from django.db import IntegrityError
 from django.utils.translation import ugettext as _
 from django.shortcuts import render, get_object_or_404
-from lib.extbaseserializer import ExtBaseSerializer, ExtJsonSerializer
+from lib.ext_base_serializers import ExtBaseSerializer, ExtJsonSerializer
 from usermodule.models import Professor, Student
 from .models import (
     Period, Signature, Group, StudentGroup, Notice, EvaluationType,
     ConfigurationPartial, ConfigurationValue, Partial
 )
+from .validators import ContextValidator
 
 
 @login_required
@@ -211,17 +212,16 @@ def professor_group_detail_index(
             if len(partials) == 0:
                 context['current_group_no_partials'] = status_no_partial
             context['current_username'] = current_user.get_username()
-            context['current_period_name'] = current_period.name
-            context['current_signature_name'] = current_signature.name
+            context['current_period_name'] = current_period.name_url
+            context['current_signature_name'] = current_signature.name_url
             context['current_signature_career'] = current_signature.career
             context['current_group_pk'] = current_group.pk
-            context['current_group_name'] = current_group.name
+            context['current_group_name'] = current_group.name_url
             context['current_group_group_code'] = current_group.group_code
             response = render(
                 request, 'groupmodule/professor_detail_group_view.html',
                 context
             )
-            # import ipdb; ipdb.set_trace()
     return response
 
 
@@ -230,6 +230,11 @@ def professor_group_configuration(
         request, professor_username, period_name, signature_name, group_name):
     """
     """
+    configuration_text = _('There are two types of evaluation availables: ')
+    warning_message = [
+        _('If you choose an evaluation type this can '),
+        _('not be changed in the future.'),
+    ]
     context = {
         'configuration': _('this if now can be translate')
     }
