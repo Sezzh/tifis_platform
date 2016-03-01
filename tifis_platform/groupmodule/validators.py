@@ -1,3 +1,11 @@
+from django.contrib.auth.models import Group, User
+from django.shortcuts import render, get_object_or_404
+from usermodule.models import Professor, Student
+from .models import (
+    Period, Signature, Group, StudentGroup, Notice, EvaluationType,
+    ConfigurationPartial, ConfigurationValue, Partial
+)
+
 """
 """
 
@@ -30,6 +38,7 @@ class ContextValidator(object):
         self._current_period = None
         self._current_group = None
         self._current_signature = None
+        self.validate()
 
     @property
     def current_user(self):
@@ -97,18 +106,18 @@ class ContextValidator(object):
 
     def validate_period(self):
         self.current_period = get_object_or_404(
-            Period, name__exact=period_name,
+            Period, name__exact=self.period_name,
             professor_id__exact=self.current_user.id
         )
 
     def validate_signature(self):
         self.current_signature = get_object_or_404(
-            Signature, name__exact=signature_name,
-            period_id__exact=current_period.id
+            Signature, name__exact=self.signature_name,
+            period_id__exact=self.current_period.id
         )
 
     def validate_group(self):
         self.current_group = get_object_or_404(
-            Group, name__exact=group_name,
-            signature_id__exact=current_signature.id
+            Group, name__exact=self.group_name,
+            signature_id__exact=self.current_signature.id
         )

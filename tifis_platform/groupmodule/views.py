@@ -77,19 +77,16 @@ def professor_signatures_index(request, professor_username, period_name):
     """
     if hasattr(request.user, 'professor'):
         if request.user.get_username() == professor_username:
-            period_name = period_name.replace('-', ' ')
-            current_user = User.objects.get(
-                username__exact=request.user.get_username()
-            )
-            current_period = get_object_or_404(
-                Period, name__exact=period_name,
-                professor_id__exact=current_user.id
+            context_validator = ContextValidator(
+                current_user=request, period_name=period_name
             )
             context = {
-                'current_period_name': current_period.name,
-                'current_period_start_date': current_period.start_date,
-                'current_period_end_date': current_period.end_date,
-                'current_period_pk': current_period.pk,
+                'current_period_name': context_validator.current_period.name,
+                'current_period_start_date': context_validator.current_period
+                .start_date,
+                'current_period_end_date': context_validator.current_period
+                .end_date,
+                'current_period_pk': context_validator.current_period.pk,
             }
             response = render(
                 request, 'groupmodule/forms/new_signature.html', context
@@ -132,23 +129,16 @@ def professor_groups_index(
     """
     if hasattr(request.user, 'professor'):
         if request.user.get_username() == professor_username:
-            signature_name = signature_name.replace('-', ' ')
-            period_name = period_name.replace('-', ' ')
-            current_user = User.objects.get(
-                username__exact=request.user.get_username()
-            )
-            current_period = get_object_or_404(
-                Period, name__exact=period_name,
-                professor_id__exact=current_user.id
-            )
-            current_signature = get_object_or_404(
-                Signature, name__exact=signature_name,
-                period_id__exact=current_period.id
+            context_validator = ContextValidator(
+                current_user=request, period_name=period_name,
+                signature_name=signature_name
             )
             context = {
-                'current_signature_name': current_signature.name,
-                'current_signature_career': current_signature.career,
-                'current_signature_pk': current_signature.pk,
+                'current_signature_name': context_validator.current_signature
+                .name,
+                'current_signature_career': context_validator.current_signature
+                .career,
+                'current_signature_pk': context_validator.current_signature.pk,
             }
             response = render(
                 request, 'groupmodule/forms/new_group.html', context
@@ -190,25 +180,11 @@ def professor_group_detail_index(
     status_no_partial = ''.join(phrases)
     if hasattr(request.user, 'professor'):
         if request.user.get_username() == professor_username:
-            period_name = period_name.replace('-', ' ')
-            signature_name = signature_name.replace('-', ' ')
-            group_name = group_name.replace('-', ' ')
-            current_user = User.objects.get(
-                username__exact=request.user.get_username()
+            context_validator = ContextValidator(
+                current_username=request, period_name=period_name,
+                signature_name=signature_name, group_name=group_name
             )
-            current_period = get_object_or_404(
-                Period, name__exact=period_name,
-                professor_id__exact=current_user.id
-            )
-            current_signature = get_object_or_404(
-                Signature, name__exact=signature_name,
-                period_id__exact=current_period.id
-            )
-            current_group = get_object_or_404(
-                Group, name__exact=group_name,
-                signature_id__exact=current_signature.id
-            )
-            partials = current_group.partial_set.all()
+            partials = context_validator.current_group.partial_set.all()
             if len(partials) == 0:
                 context['current_group_no_partials'] = status_no_partial
             context['current_username'] = current_user.get_username()
