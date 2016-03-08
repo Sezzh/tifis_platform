@@ -1,3 +1,5 @@
+"""
+"""
 from django.contrib.auth.models import Group, User
 from django.shortcuts import render, get_object_or_404
 from usermodule.models import Professor, Student
@@ -5,9 +7,6 @@ from .models import (
     Period, Signature, Group, StudentGroup, Notice, EvaluationType,
     ConfigurationPartial, ConfigurationValue, Partial
 )
-
-"""
-"""
 
 
 class ProfessorValidator(object):
@@ -46,7 +45,7 @@ class ContextValidator(object):
 
     @current_user.setter
     def current_user(self, current_user):
-        self._current_user = current_username
+        self._current_user = current_user
 
     @property
     def period_name(self):

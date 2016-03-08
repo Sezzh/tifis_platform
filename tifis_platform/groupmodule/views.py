@@ -181,19 +181,19 @@ def professor_group_detail_index(
     if hasattr(request.user, 'professor'):
         if request.user.get_username() == professor_username:
             context_validator = ContextValidator(
-                current_username=request, period_name=period_name,
+                current_user=request, period_name=period_name,
                 signature_name=signature_name, group_name=group_name
             )
             partials = context_validator.current_group.partial_set.all()
             if len(partials) == 0:
                 context['current_group_no_partials'] = status_no_partial
-            context['current_username'] = current_user.get_username()
-            context['current_period_name'] = current_period.name_url
-            context['current_signature_name'] = current_signature.name_url
-            context['current_signature_career'] = current_signature.career
-            context['current_group_pk'] = current_group.pk
-            context['current_group_name'] = current_group.name_url
-            context['current_group_group_code'] = current_group.group_code
+            context['current_username'] = context_validator.current_user.get_username()
+            context['current_period_name'] = context_validator.current_period.name_url
+            context['current_signature_name'] = context_validator.current_signature.name_url
+            context['current_signature_career'] = context_validator.current_signature.career
+            context['current_group_pk'] = context_validator.current_group.pk
+            context['current_group_name'] = context_validator.current_group.name_url
+            context['current_group_group_code'] = context_validator.current_group.group_code
             response = render(
                 request, 'groupmodule/professor_detail_group_view.html',
                 context
