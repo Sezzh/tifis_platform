@@ -187,13 +187,25 @@ def professor_group_detail_index(
             partials = context_validator.current_group.partial_set.all()
             if len(partials) == 0:
                 context['current_group_no_partials'] = status_no_partial
-            context['current_username'] = context_validator.current_user.get_username()
-            context['current_period_name'] = context_validator.current_period.name_url
-            context['current_signature_name'] = context_validator.current_signature.name_url
-            context['current_signature_career'] = context_validator.current_signature.career
+            context['current_username'] = (
+                context_validator.current_user.get_username()
+            )
+            context['current_period_name'] = (
+                context_validator.current_period.name_url
+            )
+            context['current_signature_name'] = (
+                context_validator.current_signature.name_url
+            )
+            context['current_signature_career'] = (
+                context_validator.current_signature.career
+            )
             context['current_group_pk'] = context_validator.current_group.pk
-            context['current_group_name'] = context_validator.current_group.name_url
-            context['current_group_group_code'] = context_validator.current_group.group_code
+            context['current_group_name'] = (
+                context_validator.current_group.name_url
+            )
+            context['current_group_group_code'] = (
+                context_validator.current_group.group_code
+            )
             response = render(
                 request, 'groupmodule/professor_detail_group_view.html',
                 context
